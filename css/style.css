@@ -1,0 +1,83 @@
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family:serif, Arial, Verdana;
+  background: no-repeat center center fixed url(http://wallpapershdfine.com/wp-content/gallery/free-high-resolution-images/free-3D-high-resolution-98.jpg);
+  -webkit-background-size:100%;
+  background-size:100%;
+}
+/*mutistepform styles*/
+.msform {
+  width: 800px;
+  margin: 350px auto;
+  text-align: center;
+  position: relative;
+}
+
+.msform fieldset {
+  background-color: transparent;
+  padding: 20px 30px;
+
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+
+  /*fieldset one over another, important!!*/
+  position: absolute;
+}
+
+/*Hide all except first fieldset*/
+.msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+.msform input {
+  padding: 15px;
+  border: 1px solid rgba(0,0,0, .05);
+  border-radius: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: serif;
+  color: #2C3E50;
+  font-size: 15px;
+  outline: none;
+}
+
+.msform input.error, .msform textarea.error{
+  border: 5px solid rgb(255,99,71);
+}
+
+.msform select, option{
+  padding: 15px;
+  border: 1px solid rgba(0,0,0, .05);
+  border-radius: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: serif;
+  color: #2C3E50;
+  font-size: 15px;
+  outline: none;
+}
+
+.msform .action-button {
+  width: 100px;
+  background: rgb(64,64,64);
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 20px;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  outline: none;
+}
+.msform .action-button:hover, .msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px rgb(9, 8, 81);
+  background-color: rgb(9, 8, 81);
+}
