@@ -95,13 +95,11 @@ $(".previous").click(function () {
   });
 });
 
-$(".submit").click(function () {
-  return false;
-});
 
+//check for input
 function check($fs) {
   switch ($fs.attr('data-check-id')) {
-    case '1':
+    case '1':  //1st fieldset
       $i_question = $('input[name="q1"]', $fs);
 
       //QUESTION
@@ -112,7 +110,7 @@ function check($fs) {
         $i_question.removeClass('error');
       }
       //break;
-    case '3':
+    case '3': //3rd fieldset
       $i_name = $('input[name="name"]', $fs);
       $i_email = $('input[name="email"]', $fs);
 
