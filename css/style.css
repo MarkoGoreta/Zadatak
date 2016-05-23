@@ -152,12 +152,10 @@ body {
   font-size: 51px;
 }
 @media (max-width: 767px) {
-
   .navbar  { margin-top:20px; left: 0; width: 100%;}
   .navbar .nav > li { height: 60px; }
   .navbar .nav > li a { height: 60px; text-align: left;}
 
   .nav-item{margin-left: 0;}
-
 }
 
