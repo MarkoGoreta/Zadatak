@@ -1,0 +1,163 @@
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+}
+body {
+  font-family: GothamPro, Arial, Verdana;
+}
+
+.jumbotron {
+  background: no-repeat center center fixed url(../images/background.png);
+  -webkit-background-size:100% 100%;
+  background-size:100% 100%;
+  height:100vh;
+}
+
+#inputQuestion-error{
+  position: absolute;
+  color:red;
+  opacity:1;
+  left:50px;
+  bottom:-5px;
+  font-weight:bold;
+}
+
+/*mutistepform styles*/
+.msform {
+  width: 80em;
+  margin: 20px auto;
+  text-align: center;
+  position: relative;
+}
+
+.msform fieldset {
+  background-color: transparent;
+  padding: 20px 30px;
+  margin: auto;
+
+  /*fieldset one over another, important!!*/
+  position: absolute;
+}
+
+/*Hide all except first fieldset*/
+.msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+.msform input {
+  padding:25px;
+  width: 630px;
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 3px 0 0 3px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  color: #2C3E50;
+  outline: none;
+  object-fit: contain;
+  font-family: GothamPro;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.msform select{
+  padding:5px;
+  width: 630px;
+  height: 60px;
+  background-color: #ffffff;
+  border-radius: 3px 0 0 3px;
+  color: #2C3E50;
+  outline: none;
+  font-family: GothamPro;
+  box-sizing: border-box;
+  object-fit: contain;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.msform input.error, .msform textarea.error{
+  border: 1px solid red;
+}
+
+.msform .action-button {
+  width: 150px;
+  background: rgb(64,64,64);
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 20px;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  outline: none;
+}
+
+.navbar{
+  margin-top:-50px;
+
+}
+.navbar #navbarLeft{
+  margin-left:44px;
+  margin-top:5px;
+}
+
+#navbarRight
+{
+  float: right;
+}
+
+
+#navbarRight li.nav-item a{
+  height: 51px;
+  opacity: 0.8;
+  font-size: 20px;
+  line-height: 3.6;
+  color: #ffffff;
+  padding-left:100px;
+}
+
+
+#navbarRight li.nav-item a:hover{
+  font-weight: bold;
+  opacity:1;
+}
+
+.msform .continue {
+  width: 170px;
+  height: 60px;
+  opacity: 0.97;
+  background-color: #83b442;
+  border-radius:0 3px 3px 0;
+  font-family: serif;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  margin-left:-5px;
+  padding:20px;
+  text-align: center;
+}
+
+.page1title{
+  width: 557px;
+  height: 159px;
+  font-family: GothamPro;
+  text-align: center;
+  color: #ffffff;
+  position:relative;
+  margin-top:233px;
+}
+
+.page1title h1{
+  font-size: 51px;
+}
+@media (max-width: 767px) {
+
+  .navbar  { margin-top:20px; left: 0; width: 100%;}
+  .navbar .nav > li { height: 60px; }
+  .navbar .nav > li a { height: 60px; text-align: left;}
+
+  .nav-item{margin-left: 0;}
+
+}
+
