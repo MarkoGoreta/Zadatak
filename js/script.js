@@ -8,6 +8,7 @@ $(function ($) {
   $('html').click(function () {
     $('#inputQuestion').tooltip('hide').tooltip('disable');
   });
+  $("#someDataDropdown").prop("selectedIndex", -1);
 });
 
 //$.getJSON( "cars.json", function(data) {
@@ -25,11 +26,8 @@ var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function () {
   check($('fieldset'));
-  if ($('#inputQuestion').val().length == 0) {
-    //document.getElementById("inputName").style.background = "red";
-    alert("empty field!");
-  }
-  else {
+  if ($('#inputQuestion').val().length !== 0) {
+
     document.getElementById("inputQuestion").style.background = "white";
     if (animating) return false;
     animating = true;
@@ -109,27 +107,48 @@ function check($fs) {
       else {
         $i_question.removeClass('error');
       }
-      //break;
-    case '3': //3rd fieldset
-      $i_name = $('input[name="name"]', $fs);
-      $i_email = $('input[name="email"]', $fs);
-
-      //NAME
-      if ($i_name.val().length < 3) {
-        $i_name.addClass('error');
-      }
-      else {
-        $i_name.removeClass('error');
-      }
-
-      //EMAIL
-      if ($i_email.val().length < 6) {
-        $i_email.addClass('error');
-      }
-      else {
-        $i_email.removeClass('error');
-      }
       break;
-  }
-}
+  //  case '3': //3rd fieldset
+  //    $i_name = $('input[name="name"]', $fs);
+  //    $i_email = $('input[name="email"]', $fs);
+  //
+  //    //NAME
+  //    if ($i_name.val().length < 3) {
+  //      $i_name.addClass('error');
+  //    }
+  //    else {
+  //      $i_name.removeClass('error');
+  //    }
+  //
+  //    //EMAIL
+  //    if ($i_email.val().length < 6) {
+  //      $i_email.addClass('error');
+  //    }
+  //    else {
+  //      $i_email.removeClass('error');
+  //    }
+  //    break;
+  //}
+}}
 
+$(function ($) {
+  $('.msform').validate({ // initialize the plugin
+    rules: {
+      q1: {
+        required: true,
+        minlength: 1
+      },
+      name: {
+        required: true,
+        minlength: 1
+      },
+      email: {
+        required: true,
+        email: true
+      }
+    },
+    submitHandler: function (form) { // for demo
+      return false; // for demo
+    }
+  });
+});
