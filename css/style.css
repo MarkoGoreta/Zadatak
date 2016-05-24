@@ -1,35 +1,38 @@
 /*basic reset*/
-* {margin: 0; padding: 0;}
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html {
   height: 100%;
 }
+
 body {
   font-family: GothamPro, Arial, Verdana;
 }
 
 .jumbotron {
   background: no-repeat center center fixed url(../images/background.png);
-  -webkit-background-size:100% 100%;
-  background-size:100% 100%;
-  height:100vh;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  height: 100vh;
 }
 
-#inputQuestion-error{
-  position: absolute;
-  color:red;
-  opacity:1;
-  left:50px;
-  bottom:-5px;
-  font-weight:bold;
-}
+/*label{*/
+  /*position: relative;*/
+  /*color: red;*/
+  /*opacity: 1;*/
+  /*left: 50px;*/
+  /*bottom: -5px;*/
+  /*font-weight: bold;*/
+/*}*/
 
 /*mutistepform styles*/
 .msform {
   width: 80em;
-  margin: 20px auto;
   text-align: center;
-  position: relative;
+  position: absolute;
 }
 
 .msform fieldset {
@@ -45,9 +48,10 @@ body {
 .msform fieldset:not(:first-of-type) {
   display: none;
 }
+
 /*inputs*/
 .msform input {
-  padding:25px;
+  padding: 25px;
   width: 630px;
   height: 60px;
   background-color: #ffffff;
@@ -62,8 +66,13 @@ body {
   line-height: 1.4;
 }
 
-.msform select{
-  padding:5px;
+.msform #inputQuestion {
+  background: white url("../images/logo-letter.png") no-repeat 10px 10px !important;
+  padding-left: 65px !important;
+}
+
+.msform select {
+  padding: 5px;
   width: 630px;
   height: 60px;
   background-color: #ffffff;
@@ -77,13 +86,13 @@ body {
   line-height: 1.4;
 }
 
-.msform input.error, .msform textarea.error{
-  border: 1px solid red;
-}
+/*.msform input.error, .msform textarea.error {*/
+  /*border: 1px solid red;*/
+/*}*/
 
 .msform .action-button {
   width: 150px;
-  background: rgb(64,64,64);
+  background: rgb(64, 64, 64);
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -93,34 +102,45 @@ body {
   outline: none;
 }
 
-.navbar{
-  margin-top:-50px;
+.msform .sent {
+  background: rgb(135, 201, 63);
+  width: 171px;
+  height: 47px;
+  border-radius: 40px;
+  position: relative;
+  font-family: GothamPro-Bold;
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 110px;
+}
+
+.navbar {
+  margin-top: -50px;
 
 }
-.navbar #navbarLeft{
-  margin-left:44px;
-  margin-top:5px;
+
+.navbar #navbarLeft {
+  margin-left: 44px;
+  margin-top: 5px;
 }
 
-#navbarRight
-{
+#navbarRight {
   float: right;
+  margin-right: 20px;
 }
 
-
-#navbarRight li.nav-item a{
+#navbarRight li.nav-item a {
   height: 51px;
   opacity: 0.8;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 3.6;
   color: #ffffff;
-  padding-left:100px;
+  padding-left: 100px;
 }
 
-
-#navbarRight li.nav-item a:hover{
+#navbarRight li.nav-item a:hover {
   font-weight: bold;
-  opacity:1;
+  opacity: 1;
 }
 
 .msform .continue {
@@ -128,34 +148,222 @@ body {
   height: 60px;
   opacity: 0.97;
   background-color: #83b442;
-  border-radius:0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
   font-family: serif;
   color: #ffffff;
   font-size: 14px;
   outline: none;
-  margin-left:-5px;
-  padding:20px;
+  margin-left: -5px;
+  padding: 21px;
   text-align: center;
 }
 
-.page1title{
+.titleText {
   width: 557px;
   height: 159px;
   font-family: GothamPro;
   text-align: center;
   color: #ffffff;
-  position:relative;
-  margin-top:233px;
+  position: relative;
+  margin-top: 233px;
 }
 
-.page1title h1{
-  font-size: 51px;
+.titleText h1 {
+  font-size: 48px;
 }
+
+.titleText span h1 {
+  width: 841px;
+  height: 106px;
+  font-family: GothamPro-Light;
+  line-height: 1.0;
+  margin-left: -100px;
+}
+
+.titleText h3 {
+  font-family: GothamPro-Medium;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-left: -100px;
+  margin-top: -40px;
+  letter-spacing: 1px;
+  position: absolute;
+}
+
+.testimonials {
+  padding: 100px;
+}
+
+.testimonials h1 {
+  padding-top:24px;
+  width: 389px;
+  height: 53px;
+  opacity: 0.6;
+  font-family: GothamPro-Light;
+  font-size: 40px;
+  line-height: 1.3;
+  color: #000000;
+}
+.testimonials p{
+  padding-top:16px;
+  width: 317px;
+  height: 38px;
+  opacity: 0.2;
+  font-family: GothamPro-Medium;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #000000;
+  position: relative;
+}
+
+.testimonials .textContainer {
+  padding: 32px 32px 32px 38px;
+  margin: 60px 0 0 -15px;
+  width: 495px;
+  height: 209px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.12);
+  position: absolute;
+}
+
+.textContainer h2 {
+  width: 62px;
+  height: 26px;
+  font-family: GothamPro-Medium;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #747474;
+}
+
+.textContainer h3 {
+  width: 123px;
+  height: 26px;
+  opacity: 0.3;
+  font-family: GothamPro-Medium;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  color: #747474;
+}
+
+.textContainer p {
+  width: 478px;
+  height: 52px;
+  font-family: GothamPro-Italic;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #747474;
+  font-style:italic;
+  opacity: 1;
+}
+
+.imageContainer1 {
+  width: 335px;
+  height: 395px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  display: inline-block;
+  left: 65%;
+  bottom:285px;
+}
+.imageContainer2 {
+  width: 335px;
+  height: 395px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 0 54px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  margin-left:119px;
+  display: inline-block;
+  left:33%;
+  bottom:160px;
+}
+
+.textContainer a{
+  display:block;
+  float:left;
+  padding:10px 10px 0 0;
+}
+
+a .bullet:hover, .bullet:active, .bullet:focus{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.textContainer .bullet{
+  width: 9px;
+  height: 9px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #d8d8d8;
+}
+
+.imageContainer2 img {
+  position: absolute;
+  padding: 30px 62px 0 72px;
+}
+
+.ovalShadow {
+  position: absolute;
+  width: 186px;
+  height: 22px;
+  opacity: 0.05;
+  background-image: radial-gradient(circle at 50% 50%, #000000, rgba(0, 0, 0, 0));
+  padding: 17px 77px 0 72px;
+}
+
 @media (max-width: 767px) {
-  .navbar  { margin-top:20px; left: 0; width: 100%;}
-  .navbar .nav > li { height: 60px; }
-  .navbar .nav > li a { height: 60px; text-align: left;}
+  .navbar {
+    margin-top: 20px;
+    left: 0;
+    width: 100%;
+  }
 
-  .nav-item{margin-left: 0;}
+  .navbar .nav > li {
+    height: 60px;
+  }
+
+  .navbar .nav > li a {
+    height: 60px;
+    text-align: left;
+  }
+
+  .nav-item {
+    margin-left: 0;
+  }
 }
+
+/* #### Generated By: http://www.cufonfonts.com #### */
+
+@font-face {
+  font-family: 'GothamPro';
+  src: url('../fonts/GothamPro/GothamPro.eot?') format('eot'),
+  url('../fonts/GothamPro/GothamPro.otf') format('opentype'),
+  url('../fonts/GothamPro/GothamPro.woff') format('woff'),
+  url('../fonts/GothamPro/GothamPro.ttf') format('truetype'),
+  url('../fonts/GothamPro/GothamPro.svg#GothamPro') format('svg');
+}
+
+@font-face {
+  font-family: 'GothamPro-Light';
+  src: url('../fonts/GothamPro-Light/GothamPro-Light.eot?') format('eot'),
+  url('../fonts/GothamPro-Light/GothamPro-Light.otf') format('opentype'),
+  url('../fonts/GothamPro-Light/GothamPro-Light.woff') format('woff'),
+  url('../fonts/GothamPro-Light/GothamPro-Light.ttf') format('truetype'),
+  url('../fonts/GothamPro-Light/GothamPro-Light.svg#GothamPro-Light') format('svg');
+}
+
+@font-face {
+  font-family: 'GothamPro-Medium';
+  src: url('../fonts/GothamPro-Medium/GothamPro-Medium.eot?') format('eot'),
+  url('../fonts/GothamPro-Medium/GothamPro-Medium.otf') format('opentype'),
+  url('../fonts/GothamPro-Medium/GothamPro-Medium.woff') format('woff'),
+  url('../fonts/GothamPro-Medium/GothamPro-Medium.ttf') format('truetype'),
+  url('../fonts/GothamPro-Medium/GothamPro-Medium.svg#GothamPro-Medium') format('svg');
+}
+
 

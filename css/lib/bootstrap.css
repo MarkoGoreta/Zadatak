@@ -5089,7 +5089,7 @@ button.close {
 }
 
 .tooltip {
-  position: absolute;
+  position: relative;
   z-index: 1070;
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -5117,16 +5117,16 @@ button.close {
 }
 
 .tooltip.tooltip-top, .tooltip.bs-tether-element-attached-bottom {
-  padding: 5px 0;
-  margin-top: -10px;
-  margin-left: -170px;
+  padding: 5px 0 !important; /*prominija */
+  margin-top: -10px !important; /*prominija */
+  margin-left: -150px !important; /*prominija */
 }
 
 .tooltip.tooltip-top .tooltip-arrow, .tooltip.bs-tether-element-attached-bottom .tooltip-arrow {
   bottom: 0;
-  left: 10%;
+  left: 10% !important; /*prominija */
   margin-left: -5px;
-  border-width: 15px 15px 0;
+  border-width: 15px 15px 0 !important; /*prominija */
   border-top-color: #ffffff;
 }
 

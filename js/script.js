@@ -3,11 +3,11 @@
  */
 $(function ($) {
   //toggle popover on load
-  $('[data-toggle="tooltip"]').tooltip().tooltip("show");
+  $('[data-toggle="tooltip"]').tooltip().tooltip('show');
   //hide and disable tooltip on mouseclick
-  $('html').click(function () {
-    $('#inputQuestion').tooltip('hide').tooltip('disable');
-  });
+  //$('html').click(function () {
+  //  $('#inputQuestion').tooltip('disable').tooltip('hide');
+  //});
   $("#someDataDropdown").prop("selectedIndex", -1);
 });
 
@@ -23,18 +23,19 @@ $(function ($) {
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset animation properties
 var animating; //flag to prevent quick multi-click glitches
+var increment=0;
 
-$(".next").click(function () {
-  check($('fieldset'));
+$(".next, .submit").click(function () {
+
   if ($('#inputQuestion').val().length !== 0) {
-
-    document.getElementById("inputQuestion").style.background = "white";
+    increment++;
+    check(increment);
+    //document.getElementById("inputQuestion").style.background = "white";
     if (animating) return false;
     animating = true;
 
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
-
     //show the next fieldset
     next_fs.show();
     //hide the current fieldset
@@ -59,9 +60,13 @@ $(".next").click(function () {
       easing: 'easeInOutBack'
     });
   }
+  else {
+    $('#inputQuestion').attr('data-original-title', "TELL US WHAT YOU WANT").tooltip('enable').tooltip('show');
+  }
 });
 
 $(".previous").click(function () {
+  increment--;
   if (animating) return false;
   animating = true;
 
@@ -93,62 +98,69 @@ $(".previous").click(function () {
   });
 });
 
-
-//check for input
-function check($fs) {
-  switch ($fs.attr('data-check-id')) {
-    case '1':  //1st fieldset
-      $i_question = $('input[name="q1"]', $fs);
-
-      //QUESTION
-      if ($i_question.val().length == 0) {
-        $i_question.addClass('error');
-      }
-      else {
-        $i_question.removeClass('error');
-      }
-      break;
-  //  case '3': //3rd fieldset
-  //    $i_name = $('input[name="name"]', $fs);
-  //    $i_email = $('input[name="email"]', $fs);
-  //
-  //    //NAME
-  //    if ($i_name.val().length < 3) {
-  //      $i_name.addClass('error');
-  //    }
-  //    else {
-  //      $i_name.removeClass('error');
-  //    }
-  //
-  //    //EMAIL
-  //    if ($i_email.val().length < 6) {
-  //      $i_email.addClass('error');
-  //    }
-  //    else {
-  //      $i_email.removeClass('error');
-  //    }
-  //    break;
-  //}
-}}
-
-$(function ($) {
-  $('.msform').validate({ // initialize the plugin
-    rules: {
-      q1: {
-        required: true,
-        minlength: 1
-      },
-      name: {
-        required: true,
-        minlength: 1
-      },
-      email: {
-        required: true,
-        email: true
-      }
-    },
-    submitHandler: function (form) { // for demo
-      return false; // for demo
-    }
-  });
+$('.sent').click(function () {
+  location.reload();
 });
+
+function check(increment) {
+  if(increment == 4) {
+      setTimeout(function () {
+      location.reload();
+      },7000);
+  }};
+
+////check for input
+//function check($fs) {
+//  switch ($fs.attr('data-check-id')) {
+//    case '1':  //1st fieldset
+//      $i_question = $('input[name="q1"]', $fs);
+//
+//      //QUESTION
+//      if ($i_question.val().length == 0) {
+//        $i_question.addClass('error');
+//      }
+//      else {
+//        $i_question.removeClass('error');
+//      }
+//      break;
+//    case '3': //3rd fieldset
+//      $i_name = $('input[name="name"]', $fs);
+//      $i_email = $('input[name="email"]', $fs);
+//
+//      //NAME
+//      if ($i_name.val().length < 3) {
+//        $i_name.addClass('error');
+//      }
+//      else {
+//        $i_name.removeClass('error');
+//      }
+//
+//      //EMAIL
+//      if ($i_email.val().length < 6) {
+//        $i_email.addClass('error');
+//      }
+//      else {
+//        $i_email.removeClass('error');
+//      }
+//      break;
+//  }
+//}
+
+//$(function ($) {
+//  $('.msform').validate({ // initialize the plugin
+//    rules: {
+//      name: {
+//        required: true,
+//        minlength: 1
+//      },
+//      email: {
+//        required: true,
+//        email: true
+//      }
+//    },
+//    submitHandler: function (form) { // for demo
+//      return false; // for demo
+//    }
+//  });
+//});
+
