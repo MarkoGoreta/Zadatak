@@ -194,20 +194,20 @@ $(function () {
 });
 
 
-//$(function(){
-//  //$('.slider > div').addClass('animated fadeInRight');
-//  var slides = ['firstImgContainer','secondImgContainer','thirdImgContainer','fourthImgContainer', 'fifthImgContainer'];
-//
-//  var setInt = setInterval(loop,3000);
-//
-//  loop = function () {
-//    for (var i=0; slides.length <= i;i++){
-//      console.log(slides[i]);
-//    }
-//  }
-//});
+$(function(){
+  //$('.slider > div').addClass('animated fadeInRight');
+  var slides = ['firstImgContainer','secondImgContainer','thirdImgContainer','fourthImgContainer', 'fifthImgContainer'];
+  loop = function () {
+    for (var i=0; slides.length <= i;i++){
+      console.log(slides[i]);
+    }
+  };
+
+  setInterval(loop,3000);
+
+});
 
 $('.selectpicker').selectpicker({
   style: 'btn-info',
-  size: 4
+  size: 6
 });
