@@ -285,7 +285,7 @@ body {
   position: absolute;
   left:58%;
   margin-top:-160px;
-  overflow: visible;
+  visibility: visible;
 }
 
 #secondImgContainer, #thirdImgContainer, #fourthImgContainer, #fifthImgContainer{
@@ -294,7 +294,7 @@ body {
   position: absolute;
   left:58%;
   margin-top:-160px;
-  overflow: hidden;
+  visibility: hidden;
 }
 
 .imageContainer1 {
@@ -319,24 +319,9 @@ body {
   /* nikad negativni z index zbog browsera*/
 }
 
-/*.textContainer ul li{*/
-  /*display:block;*/
-  /*float:left;*/
-/*}*/
-
-/*.textContainer ul li .bullet:hover {*/
-  /*background-color: rgba(0, 0, 0, 1);*/
-/*}*/
-
-/*.textContainer .bullet{*/
-  /*margin: 15px 10px 10px 0;*/
-  /*width: 9px;*/
-  /*height: 9px;*/
-  /*-webkit-border-radius: 9px;*/
-  /*-moz-border-radius: 9px;*/
-  /*border-radius: 9px;*/
-  /*background-color: #d8d8d8;*/
-/*}*/
+#bul1{
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
 .textContainer a{
   display:block;
@@ -358,7 +343,6 @@ body {
   margin-top:20px;
   object-fit: contain;
 }
-
 
 .imageContainer1 img{
   position: relative;

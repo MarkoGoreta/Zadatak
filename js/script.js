@@ -174,38 +174,71 @@ function check(increment) {
 
 $(function () {
 
-    $('.imageContainer2').click(function () {
-      if ((parseInt($('.imageContainer1').css('z-index'))) > (parseInt($('.imageContainer2').css('z-index'))))
-      {
+  $('.imageContainer2').click(function () {
+    if ((parseInt($('.imageContainer1').css('z-index'))) > (parseInt($('.imageContainer2').css('z-index')))) {
       $('.imageContainer2').css('z-index', (parseInt($('.imageContainer1').css('z-index')) + 1)).addClass('animated pulse');
       $('.imageContainer1').removeClass('animated pulse');
-      }
-    });
+    }
+  });
 });
 
 $(function () {
   $('.imageContainer1').click(function () {
-    if ((parseInt($('.imageContainer2').css('z-index'))) > (parseInt($('.imageContainer1').css('z-index'))))
-    {
-    $('.imageContainer1').css('z-index', (parseInt($('.imageContainer2').css('z-index')) + 1)).addClass('animated pulse');
-    $('.imageContainer2').removeClass('animated pulse');
+    if ((parseInt($('.imageContainer2').css('z-index'))) > (parseInt($('.imageContainer1').css('z-index')))) {
+      $('.imageContainer1').css('z-index', (parseInt($('.imageContainer2').css('z-index')) + 1)).addClass('animated pulse');
+      $('.imageContainer2').removeClass('animated pulse');
     }
   });
 });
 
 
-$(function(){
-  //$('.slider > div').addClass('animated fadeInRight');
-  var slides = ['firstImgContainer','secondImgContainer','thirdImgContainer','fourthImgContainer', 'fifthImgContainer'];
-  loop = function () {
-    for (var i=0; slides.length <= i;i++){
-      console.log(slides[i]);
-    }
-  };
+//$(function(){
+//  for (var x = 0; slides.length > x; x++) {
+//    setTimeout(function(x) {
+//
+//      // $('slides[x]').css('visiblity', 'hidden');
+//      $('#secondImgContainer').css('visibility','visible').addClass('animated fadeInRight');    //hmmm kako sad ovo rješit moran smislit
+//      $('#firstImgContainer').css('visibility','hidden');
+//      $('a .bullet #bul2').css('background-color','rgba(0, 0, 0, 0.5)');
+//      $('a .bullet #bul1').css('background-color', '#d8d8d8;');
+//    }, 2000, x);
+//  }
+//});
 
-  setInterval(loop,3000);
+function firstSlide() {
+  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
+  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  $('.bullet#bul1').css({'background-color': 'black', 'opacity': '0.5'});
+  $('#firstImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+}
 
-});
+function secondSlide() {
+  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
+  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  $('.bullet#bul2').css({'background-color': 'black', 'opacity': '0.5'});
+  $('#secondImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+}
+
+function thirdSlide() {
+  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
+  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  $('.bullet#bul3').css({'background-color': 'black', 'opacity': '0.5'});
+  $('#thirdImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+}
+
+function fourthSlide() {
+  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
+  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  $('.bullet#bul4').css({'background-color': 'black', 'opacity': '0.5'});
+  $('#fourthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+}
+
+function fifthSlide() {
+  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
+  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  $('.bullet#bul5').css({'background-color': 'black', 'opacity': '0.5'});
+  $('#fifthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+}
 
 $('.selectpicker').selectpicker({
   style: 'btn-info',
