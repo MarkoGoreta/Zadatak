@@ -1,6 +1,8 @@
 /**
  * Created by Marko on 21.5.2016..
  */
+
+
 $(function ($) {
   //toggle popover on load
   //$('[data-toggle="tooltip"]').tooltip().tooltip('show');
@@ -10,29 +12,7 @@ $(function ($) {
     $('#tooltip1').tooltip('disable').tooltip('hide');
   });
 });
-//
-//$('#dropDown').multiselect({
-//  buttonText: function (options, select) {
-//    return 'Choose category';
-//  },
-//  width: 400
-//});
 
-$(function () {
-
-  $('#chkveg').multiselect({
-
-    includeSelectAllOption: false
-
-  });
-
-  $('#btnget').click(function () {
-
-    alert($('#chkveg').val());
-
-  })
-
-});
 
 //$.getJSON( "cars.json", function(data) {
 //  //console.log(typeof data);
@@ -213,3 +193,21 @@ $(function () {
   });
 });
 
+
+//$(function(){
+//  //$('.slider > div').addClass('animated fadeInRight');
+//  var slides = ['firstImgContainer','secondImgContainer','thirdImgContainer','fourthImgContainer', 'fifthImgContainer'];
+//
+//  var setInt = setInterval(loop,3000);
+//
+//  loop = function () {
+//    for (var i=0; slides.length <= i;i++){
+//      console.log(slides[i]);
+//    }
+//  }
+//});
+
+$('.selectpicker').selectpicker({
+  style: 'btn-info',
+  size: 4
+});

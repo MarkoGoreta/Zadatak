@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/lib/bootstrap.css">
   <link rel="stylesheet" href="css/lib/font-awesome.css">
   <link rel="stylesheet" href="css/lib/animate.css">
-  <link rel="stylesheet" href="css/lib/bootstrap-multiselect.css">
+  <link rel="stylesheet" href="css/lib/bootstrap-select.css">
   <link rel="stylesheet" href="css/lib/slick.css">
   <link rel="stylesheet" href="css/lib/slick-theme.css">
   <script src="js/lib/prefixfree.min.js" type="text/javascript"></script>
@@ -72,34 +72,14 @@
               <div class="col-sm-12"><h1>You have not becouse you <strong>ask</strong> not</h1></div>
             </div>
           </div>
-
-          <!--<select title="Choose an option" id="dropDown" multiple="multiple">-->
-            <!--<option value="interior">Interior</option>-->
-            <!--<option value="fashion">Fashion</option>-->
-            <!--<option value="gadgets">Gadgets</option>-->
-            <!--<option value="cars">Cars</option>-->
-            <!--<option value="tires">Tires</option>-->
-            <!--<option value="kids">Kids</option>-->
-          <!--</select>-->
-          <div class="dropDownMenu">
-
-            <select id="chkveg" multiple="multiple">
-
-              <option value="cheese">Cheese</option>
-
-              <option value="tomatoes">Tomatoes</option>
-
-              <option value="mozarella">Mozzarella</option>
-
-              <option value="mushrooms">Mushrooms</option>
-
-              <option value="pepperoni">Pepperoni</option>
-
-              <option value="onions">Onions</option>
-
-            </select><br /><br />
-          <br>
-            </div>
+          <select class="selectpicker">
+            <option value="interior">Interior</option>
+            <option value="fashion">Fashion</option>
+            <option value="gadgets">Gadgets</option>
+            <option value="cars">Cars</option>
+            <option value="tires">Tires</option>
+            <option value="kids">Kids</option>
+          </select>
           <input type="button" name="previous" class="previous action-button" value="Back">
           <input type="button" name="next" class="next action-button" value="Next">
         </fieldset>
@@ -158,13 +138,6 @@
     <h2>Bella S</h2>
     <h3>Happy Member</h3>
     <p>“Thank you! Got a deal on my new Beats Studio <br> Wireless just in time for my birthday!”</p>
-    <!--<ul>-->
-      <!--<li class="bullet"></li>-->
-      <!--<li class="bullet"></li>-->
-      <!--<li class="bullet"></li>-->
-      <!--<li class="bullet"></li>-->
-      <!--<li class="bullet"></li>-->
-    <!--</ul>-->
     <a href="#">
       <div class="bullet"></div>
     </a>
@@ -184,8 +157,9 @@
 </div>
 
 <div class="container">
-  <div class="imageContainer">
 
+  <div class="slider">
+    <div id="firstImgContainer">
       <div class="imageContainer1">
         <img src="images/bitmap.png" alt="Headphones">
         <div class="ovalShadow"></div>
@@ -200,6 +174,73 @@
         <p>New Samsung. <br> Get the best deal in town.</p>
       </div>
     </div>
+
+    <!--<div id="secondImgContainer">-->
+      <!--<div class="imageContainer1">-->
+        <!--<img src="images/bitmap.png" alt="Headphones">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>AAAAAAAAAAAAAAA</h2>-->
+        <!--<p>Active Collection. Headphones & earphones for those who move.</p>-->
+      <!--</div>-->
+
+      <!--<div class="imageContainer2">-->
+        <!--<img src="images/bitmap-copy-2.png" alt="Samsung">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>Samsung S7 Edge</h2>-->
+        <!--<p>New Samsung. <br> Get the best deal in town.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="thirdImgContainer">-->
+      <!--<div class="imageContainer1">-->
+        <!--<img src="images/bitmap.png" alt="Headphones">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>Beats Studio Wireless</h2>-->
+        <!--<p>Active Collection. Headphones & earphones for those who move.</p>-->
+      <!--</div>-->
+
+      <!--<div class="imageContainer2">-->
+        <!--<img src="images/bitmap-copy-2.png" alt="Samsung">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>BBBBBBBBBBBBBBBBBBBB</h2>-->
+        <!--<p>New Samsung. <br> Get the best deal in town.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="fourthImgContainer">-->
+      <!--<div class="imageContainer1">-->
+        <!--<img src="images/bitmap.png" alt="Headphones">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>CCCCCCCCCCCCCCCCCC</h2>-->
+        <!--<p>Active Collection. Headphones & earphones for those who move.</p>-->
+      <!--</div>-->
+
+      <!--<div class="imageContainer2">-->
+        <!--<img src="images/bitmap-copy-2.png" alt="Samsung">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>Samsung S7 Edge</h2>-->
+        <!--<p>New Samsung. <br> Get the best deal in town.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="fifthImgContainer">-->
+      <!--<div class="imageContainer1">-->
+        <!--<img src="images/bitmap.png" alt="Headphones">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>DDDDDDDDDDDDDDDDDDDDDDDDDD</h2>-->
+        <!--<p>Active Collection. Headphones & earphones for those who move.</p>-->
+      <!--</div>-->
+
+      <!--<div class="imageContainer2">-->
+        <!--<img src="images/bitmap-copy-2.png" alt="Samsung">-->
+        <!--<div class="ovalShadow"></div>-->
+        <!--<h2>Samsung S7 Edge</h2>-->
+        <!--<p>New Samsung. <br> Get the best deal in town.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+
+
 </div>
 
 <div class="container" style="padding:200px;">
@@ -222,7 +263,7 @@
 <!-- Bootstrap -->
 <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
 <!-- Bootstrap multiselect-->
-<script src="js/lib/bootstrap-multiselect.js" type="text/javascript"></script>
+<script src="js/lib/bootstrap-select.js" type="text/javascript"></script>
 <!-- Slick carousel-->
 <script src="js/lib/slick.js" type="text/javascript"></script>
 <!-- Moja .js skripta -->
