@@ -153,24 +153,24 @@ function check(increment) {
 //  }
 //}
 
-//
-//$(function ($) {
-//  $('.msform').validate({ // initialize the plugin
-//    rules: {
-//      name: {
-//        required: true,
-//        minlength: 1
-//      },
-//      email: {
-//        required: true,
-//        email: true
-//      }
-//    },
-//    submitHandler: function (form) { // for demo
-//      return false; // for demo
-//    }
-//  });
-//});
+
+$(function ($) {
+  $('.msform').validate({ // initialize the plugin
+    rules: {
+      name: {
+        required: true,
+        minlength: 1
+      },
+      email: {
+        required: true,
+        email: true
+      }
+    },
+    submitHandler: function (form) { // for demo
+      return false; // for demo
+    }
+  });
+});
 
 $(function () {
 
@@ -191,25 +191,16 @@ $(function () {
   });
 });
 
+//testimonials slider
 
-//$(function(){
-//  for (var x = 0; slides.length > x; x++) {
-//    setTimeout(function(x) {
-//
-//      // $('slides[x]').css('visiblity', 'hidden');
-//      $('#secondImgContainer').css('visibility','visible').addClass('animated fadeInRight');    //hmmm kako sad ovo rješit moran smislit
-//      $('#firstImgContainer').css('visibility','hidden');
-//      $('a .bullet #bul2').css('background-color','rgba(0, 0, 0, 0.5)');
-//      $('a .bullet #bul1').css('background-color', '#d8d8d8;');
-//    }, 2000, x);
-//  }
-//});
+var intervalIndex = 1;
 
 function firstSlide() {
   $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
   $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul1').css({'background-color': 'black', 'opacity': '0.5'});
   $('#firstImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  intervalIndex = 1;
 }
 
 function secondSlide() {
@@ -217,6 +208,7 @@ function secondSlide() {
   $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul2').css({'background-color': 'black', 'opacity': '0.5'});
   $('#secondImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  intervalIndex = 2;
 }
 
 function thirdSlide() {
@@ -224,6 +216,7 @@ function thirdSlide() {
   $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul3').css({'background-color': 'black', 'opacity': '0.5'});
   $('#thirdImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  intervalIndex = 3;
 }
 
 function fourthSlide() {
@@ -231,6 +224,7 @@ function fourthSlide() {
   $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul4').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fourthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  intervalIndex = 4;
 }
 
 function fifthSlide() {
@@ -238,9 +232,20 @@ function fifthSlide() {
   $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul5').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fifthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  intervalIndex = 5;
 }
 
+var functionArray = [firstSlide, secondSlide, thirdSlide, fourthSlide, fifthSlide];
+
+window.setInterval(function () {
+  functionArray[intervalIndex++ % functionArray.length]();
+}, 7000);
+
+
 $('.selectpicker').selectpicker({
-  style: 'btn-info',
   size: 6
+});
+
+$('.selectpicker').on('change', function () {
+  $('#carsDropdown').css('visibility','visible').addClass('animated fadeInDown');
 });

@@ -54,7 +54,7 @@ body {
 }
 
 /*inputs*/
-.msform input {
+.msform input, .msform select{
   padding: 25px;
   width: 770px;
   height: 60px;
@@ -386,6 +386,16 @@ body {
   background-image: radial-gradient(circle at 50% 50%, #000000, rgba(0, 0, 0, 0));
 }
 
+#carsDropdown {
+  visibility: hidden;
+}
+
+/*.selectpicker option:before {*/
+  /*content: "#";*/
+  /*border: solid 1px white;*/
+  /*padding: 2px;*/
+  /*margin: 0 10px 0 0;*/
+/*}*/
 
 @media (max-width: 767px) {
   .navbar {

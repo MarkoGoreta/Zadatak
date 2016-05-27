@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="css/lib/font-awesome.css">
   <link rel="stylesheet" href="css/lib/animate.css">
   <link rel="stylesheet" href="css/lib/bootstrap-select.css">
-  <link rel="stylesheet" href="css/lib/slick.css">
-  <link rel="stylesheet" href="css/lib/slick-theme.css">
   <script src="js/lib/prefixfree.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -72,7 +70,7 @@
               <div class="col-sm-12"><h1>You have not becouse you <strong>ask</strong> not</h1></div>
             </div>
           </div>
-          <select class="selectpicker">
+          <select title="Choose category" class="selectpicker">
             <option value="interior">Interior</option>
             <option value="fashion">Fashion</option>
             <option value="gadgets">Gadgets</option>
@@ -80,6 +78,12 @@
             <option value="tires">Tires</option>
             <option value="kids">Kids</option>
           </select>
+          <br>
+          <div id="carsDropdown">
+            <select name="Year" id="referencaNaYear" class="selectpicker"></select>
+            <select name="Make" id="referencaNaMake" class="selectpicker"></select>
+            <select name="Model" id="referencaNaModel" class="selectpicker"></select>
+          </div>
           <input type="button" name="previous" class="previous action-button" value="Back">
           <input type="button" name="next" class="next action-button" value="Next">
         </fieldset>
@@ -264,8 +268,6 @@
 <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
 <!-- Bootstrap multiselect-->
 <script src="js/lib/bootstrap-select.js" type="text/javascript"></script>
-<!-- Slick carousel-->
-<script src="js/lib/slick.js" type="text/javascript"></script>
 <!-- Moja .js skripta -->
 <script src="js/script.js" type="text/javascript"></script>
 
