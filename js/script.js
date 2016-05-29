@@ -2,26 +2,17 @@
  * Created by Marko on 21.5.2016..
  */
 
+var tooltip1 = $('#tooltip1');
 
 $(function ($) {
   //toggle popover on load
   //$('[data-toggle="tooltip"]').tooltip().tooltip('show');
   //hide and disable tooltip on mouseclick
-  $('#tooltip1').tooltip().tooltip('show');
+  tooltip1.tooltip().tooltip('show');
   $('html').click(function () {
-    $('#tooltip1').tooltip('disable').tooltip('hide');
+    tooltip1.tooltip('disable').tooltip('hide');
   });
 });
-
-
-//$.getJSON( "cars.json", function(data) {
-//  //console.log(typeof data);
-//  //console.log(data);
-//  data.forEach(function(dataItem)
-//  {
-//    console.log(dataItem);
-//  })
-//});
 
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset animation properties
@@ -30,6 +21,7 @@ var increment = 0;
 
 $(".next, .submit").click(function () {
   if ($('#inputQuestion').val().length !== 0) {
+
     increment++;
     //check(increment);
     //document.getElementById("inputQuestion").style.background = "white";
@@ -172,21 +164,23 @@ $(function ($) {
   });
 });
 
-$(function () {
+var imgCont1 = $('.imageContainer1');
+var imgCont2 = $('.imageContainer2');
 
-  $('.imageContainer2').click(function () {
-    if ((parseInt($('.imageContainer1').css('z-index'))) > (parseInt($('.imageContainer2').css('z-index')))) {
-      $('.imageContainer2').css('z-index', (parseInt($('.imageContainer1').css('z-index')) + 1)).addClass('animated pulse');
-      $('.imageContainer1').removeClass('animated pulse');
+$(function () {
+  imgCont2.click(function () {
+    if ((parseInt(imgCont1.css('z-index'))) > (parseInt(imgCont2.css('z-index')))) {
+      imgCont2.css('z-index', (parseInt(imgCont1.css('z-index')) + 1)).addClass('animated pulse');
+      imgCont1.removeClass('animated pulse');
     }
   });
 });
 
 $(function () {
-  $('.imageContainer1').click(function () {
-    if ((parseInt($('.imageContainer2').css('z-index'))) > (parseInt($('.imageContainer1').css('z-index')))) {
-      $('.imageContainer1').css('z-index', (parseInt($('.imageContainer2').css('z-index')) + 1)).addClass('animated pulse');
-      $('.imageContainer2').removeClass('animated pulse');
+  imgCont1.click(function () {
+    if ((parseInt(imgCont2.css('z-index'))) > (parseInt(imgCont1.css('z-index')))) {
+      imgCont1.css('z-index', (parseInt(imgCont2.css('z-index')) + 1)).addClass('animated pulse');
+      imgCont2.removeClass('animated pulse');
     }
   });
 });
@@ -194,42 +188,45 @@ $(function () {
 //testimonials slider
 
 var intervalIndex = 1;
+var slierDiv = $('.slider > div');
+var bullet = $('.bullet');
+
 
 function firstSlide() {
-  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
-  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
+  bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul1').css({'background-color': 'black', 'opacity': '0.5'});
   $('#firstImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 1;
 }
 
 function secondSlide() {
-  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
-  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
+  bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul2').css({'background-color': 'black', 'opacity': '0.5'});
   $('#secondImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 2;
 }
 
 function thirdSlide() {
-  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
-  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
+  bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul3').css({'background-color': 'black', 'opacity': '0.5'});
   $('#thirdImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 3;
 }
 
 function fourthSlide() {
-  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
-  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
+  bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul4').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fourthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 4;
 }
 
 function fifthSlide() {
-  $('.slider > div').css('visibility', 'hidden').removeClass('animated fadeInRight');
-  $('.bullet').css({'background-color': '#d8d8d8', 'opacity': '1'});
+  slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
+  bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul5').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fifthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 5;
@@ -241,11 +238,243 @@ window.setInterval(function () {
   functionArray[intervalIndex++ % functionArray.length]();
 }, 7000);
 
+var selPicker = $('.selectpicker');
+var carsDrop = $('#carsDropdown');
 
-$('.selectpicker').selectpicker({
+selPicker.selectpicker({
   size: 6
 });
 
-$('.selectpicker').on('change', function () {
-  $('#carsDropdown').css('visibility','visible').addClass('animated fadeInDown');
+
+var cars;
+
+
+//
+//$.getJSON("cars.json", function (data) {
+//  //console.log(typeof data);
+//  //console.log(data);
+//  cars = data;
+//  //printCars(cars);
+//  //
+//  //var newList = filterCars("1955");
+//  //printCars(newList);
+//  //
+//  //var keys = arrayOfKeys(cars);
+//  //console.log(keys[0]);
+//  //console.log(keys[1]);
+//  //console.log(keys[2]);
+//
+//  arrayOfKeys(cars);
+//  //arrayOfYears(cars);
+//  //arrayOfMake(cars);
+//  //arrayOfModel(cars);
+//});
+
+var jsonKeys = [];
+var jsonYears = [];
+var jsonMake = [];
+var jsonModel = [];
+
+function arrayOfKeys(key) {
+  for (var obj in key) break;  {
+    if (key.hasOwnProperty(obj)) {
+      for (var prop in key[obj]) {
+        if (!jsonKeys.hasOwnProperty(prop)) {
+          jsonKeys.push(prop);
+        }
+      }
+    }
+  }
+  return jsonKeys;
+}
+
+function arrayOfYears(years) {
+  $.each(years, function (index, value) {
+    if ($.inArray(value.year, jsonYears) == -1) {
+      jsonYears.push(value.year);
+    }
+  });
+  return jsonYears;
+  //console.log(jsonYears);
+}
+
+function arrayOfMake(makes) {
+  $.each(makes, function (index, value) {
+    if ($.inArray(value.make, jsonMake) == -1) {
+      jsonMake.push(value.make);
+    }
+  });
+  return jsonMake;
+  //console.log(jsonMake);
+}
+
+function arrayOfModel(models) {
+  $.each(models, function (index, value) {
+    if ($.inArray(value.model, jsonModel) == -1) {
+      jsonModel.push(value.model);
+    }
+  });
+  return jsonModel;
+  //console.log(jsonModel);
+}
+
+//testiranje
+
+//function printCars(filteredCars) {
+//  var list = $('#test');
+//  list.empty();
+//
+//  filteredCars.forEach(function (car) {
+//    list
+//      .append('<li>')
+//      .append('<p>').append(car.year).append('</p')
+//      .append('<p>').append(car.make).append('</p')
+//      .append('<p>').append(car.model).append('</p')
+//      .append('</li>')
+//  })
+//}
+
+//testiranje
+
+//function filterYear(year) {
+//  var filteredYears = [];
+//
+//  cars.forEach(function (car) {
+//    if (car.year === year) {
+//      filteredYears.push(car);
+//    }
+//  })
+//  return filteredYears;
+//}
+
+function showYears(years){
+  $.each(years, function (key, value) {
+    yearRef
+      .append($("<option>")
+        .attr("value", key)
+        .text(value))
+      .append(value)
+      .append("</option>");
+  });
+}
+
+function showModels(model){
+  $.each(model, function (key, value) {
+    modelRef
+      .append($("<option>")
+        .attr("value", key)
+        .text(value))
+      .append(value)
+      .append("</option>");
+  });
+}
+
+function showMakes(make){
+  $.each(make, function (key, value) {
+    makeRef
+      .append($("<option>")
+        .attr("value", key)
+        .text(value))
+      .append(value)
+      .append("</option>");
+  });
+}
+
+function removeDuplicateMakes(){
+  var usedNames = {};
+  $("#makeRef > option").each(function () {
+    if(usedNames[this.text]) {
+      $(this).remove();
+    } else {
+      usedNames[this.text] = this.value;
+    }
+  });
+}
+
+var yearRef = $('#yearRef');
+var makeRef = $('#makeRef');
+var modelRef = $('#modelRef');
+
+selPicker.on('change', function () {
+  if ($('option[value="cars"]').is(':selected')) {
+
+    $.getJSON("cars.json", function (data) {
+      cars = data;
+      //var keys = arrayOfKeys(cars);   //ovo je da stavi u title + ovo par redova niže, ali ne radi mi
+      var years = arrayOfYears(cars);
+      var model = arrayOfModel(cars);
+      var make = arrayOfMake(cars);
+      showYears(years);
+      showMakes(make);
+      showModels(model);
+      removeDuplicateMakes();
+      //yearRef.attr('title', 'aaaaaaa');
+      //makeRef.prop('title', 'aaaaaaa');
+
+      carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
+      //printCars()
+    });
+  }
+  else if (carsDrop.css('visibility', 'visible')) {
+    carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
+  }
 });
+
+yearRef.change(function () {
+
+  var currentYear = $('#yearRef option:selected').text();
+  var models = filterModelsOnYear(currentYear);
+  var makes = filterMakesOnYear(currentYear);
+
+  makeRef.find('option')
+    .remove();
+
+  modelRef.find('option')
+    .remove();
+
+  showMakes(makes);
+  removeDuplicateMakes();
+  showModels(models);
+});
+
+makeRef.change(function () {
+
+  var currentYear = $('#yearRef option:selected').text();
+  var currentMake = $('#makeRef option:selected').text();
+  var models = filterModelOnMakesAndYear(currentYear, currentMake);
+
+  modelRef.find('option')
+    .remove();
+
+  showModels(models);
+});
+
+function filterModelsOnYear(year) {
+  var filteredModels = [];
+  cars.forEach(function (car) {
+    if (car.year === year) {
+      filteredModels.push(car.model);
+    }
+  })
+  return filteredModels;
+}
+
+function filterMakesOnYear(year) {
+  var filteredMakes = [];
+  cars.forEach(function (car) {
+    if (car.year === year) {
+      filteredMakes.push(car.make);
+    }
+  })
+  return filteredMakes;
+}
+
+function filterModelOnMakesAndYear(year, make) {
+  var filteredModels = [];
+  cars.forEach(function (car) {
+    if (car.year === year && car.make === make) {
+      filteredModels.push(car.model);
+    }
+  })
+  return filteredModels;
+}

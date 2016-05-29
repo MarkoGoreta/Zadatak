@@ -332,6 +332,9 @@ body {
 .textContainer a .bullet:hover, a .bullet:active,a .bullet:focus{
   background-color: rgba(0, 0, 0, 0.5);
 }
+.textContainer a .bullet:hover {
+  cursor: pointer;
+}
 
 .bullet{
   width: 9px;
@@ -388,6 +391,11 @@ body {
 
 #carsDropdown {
   visibility: hidden;
+}
+
+#carsDropdown select {
+  margin:0;
+  padding: 0;
 }
 
 /*.selectpicker option:before {*/
