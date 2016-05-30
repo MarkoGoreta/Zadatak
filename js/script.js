@@ -436,7 +436,7 @@ function capitalizeAndFillYear(yearVar) {
   var year = yearVar.capitalizeFirstLetter();
 
   yearRef
-    .append($("<option>")
+    .append($("<option selected disabled>")
       .attr("value", year)
       .text(year))
     .append(year)
@@ -447,7 +447,7 @@ function capitalizeAndFillMake(makeVar) {
   var make = makeVar.capitalizeFirstLetter();
 
   makeRef
-    .append($("<option>")
+    .append($("<option selected disabled>")
       .attr("value", make)
       .text(make))
     .append(make)
@@ -458,7 +458,7 @@ function capitalizeAndFillModel(modelVar) {
   var model = modelVar.capitalizeFirstLetter();
 
   modelRef
-    .append($("<option>")
+    .append($("<option selected disabled>")
       .attr("value", model)
       .text(model))
     .append(model)
