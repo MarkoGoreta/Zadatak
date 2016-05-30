@@ -41,7 +41,7 @@
   <div class="container">
     <div class="col-sm-10 col-sm-offset-1">
       <form class="msform">
-        <fieldset data-check-id="1">
+        <fieldset data-check-id="1" id="firstSet">
           <div class="container titleText">
             <div class="row">
               <div class="col-sm-12">
@@ -59,7 +59,7 @@
             class="fa fa-arrow-right" aria-hidden="true"></span></button>
 
         </fieldset>
-        <fieldset data-check-id="2">
+        <fieldset data-check-id="2" id="secondSet">
           <div class="container titleText">
             <div class="row">
               <div class="col-sm-12">
@@ -101,20 +101,20 @@
 
         </fieldset>
 
-        <fieldset data-check-id="3">
+        <fieldset data-check-id="3" id="thirdSet">
           <div class="container titleText">
             <div class="row">
               <div class="col-sm-12">
                 <h1>You have not becouse you <strong>ask</strong> not</h1>
                 <h4>HOW WOULD YOU LIKE US TO <br> SEND YOU A DEAL</h4>
                 <a>
-                  <div class="catBullet"></div>
+                  <div class="catBullet" id="catBul1"></div>
                 </a>
                 <a>
-                  <div class="catBullet"></div>
+                  <div class="catBullet" id="catBul2"></div>
                 </a>
                 <a>
-                  <div class="catBullet"></div>
+                  <div class="catBullet" id="catBul3"></div>
                 </a>
               </div>
             </div>
@@ -126,7 +126,7 @@
           <input type="button" name="next" class="next action-button" value="Next">
         </fieldset>
 
-        <fieldset data-check-id="4">
+        <fieldset data-check-id="4" id="fourthSet">
           <div class="container titleText">
             <div class="row">
               <div class="col-sm-12">
@@ -144,21 +144,27 @@
               </div>
             </div>
           </div>
-          <input name="q3" placeholder="Nesto 2" class="inputField"><br>
-          <input name="q4" placeholder="Nesto 3" class="inputField"><br>
+          <select class="inputField">
+            <option selected disabled>When do you want it?</option>
+            <option value="urgent">Urgent</option>
+            <option value="now">Now</option>
+            <option value="nextWeek">Next week</option>
+            <option value="laterMonth">Later this month</option>
+            <option value="laterYear">Later this year</option>
+          </select>
+          <input name="budget" placeholder="What is your budget?" class="inputField"><br>
+          <input name="anythingElse" placeholder="Anything else" class="inputField"><br>
           <input type="button" name="previous" class="previous action-button" value="Back"/>
           <input type="submit" name="submit" class="submit action-button" value="Submit"/>
         </fieldset>
 
-        <fieldset data-check-id="5">
-          <div class="container">
-            <div class="row titleText">
+        <fieldset data-check-id="5" id="fifthSet">
+          <div class="container titleText">
+            <div class="row">
               <div class="col-sm-12">
-                <span><h1>Your request has been <strong>received.</strong></h1></span>
-              </div>
-              <div class="col-sm-7 col-lg-offset-5">
-                <h3>One of our agents will contact you once we've found your deal.</h3>
-              </div>
+                <span><h1>Your request has been <span>received.</span></h1></span>
+                <h3>One of our agents will contact you <br> once we've found your deal.</h3>
+                </div>
             </div>
             <input type="submit" name="submit" class="sent action-button" value="SENT!"/>
           </div>

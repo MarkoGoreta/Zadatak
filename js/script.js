@@ -19,19 +19,19 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var animating; //flag to prevent quick multi-click glitches
 var increment = 0;
 
+
 $(".next, .submit").click(function () {
   if ($('#inputQuestion').val().length !== 0) {
-
     increment++;
-    //check(increment);
+    check(increment);
     //document.getElementById("inputQuestion").style.background = "white";
     //if (animating) return false;
     //animating = true;
-
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
+
     //show the next fieldset
-    next_fs.show().addClass('animated fadeInLeft');
+    next_fs.show().addClass('animated fadeInRight');
     current_fs.hide();
     //hide the current fieldset
     //current_fs.animate({opacity: 0}, {
@@ -58,6 +58,24 @@ $(".next, .submit").click(function () {
   else {
     $('#tooltip2').tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
   }
+
+  if (increment === 2) {
+    $('.msform').validate({ // initialize the plugin
+      rules: {
+        name: {
+          required: true,
+          minlength: 1
+        },
+        email: {
+          required: true,
+          email: true
+        }
+      },
+      submitHandler: function (form) { // for demo
+        return false; // for demo
+      }
+    });
+  }
 });
 
 //$('a.nav-link').hover(function () {
@@ -73,7 +91,7 @@ $(".previous").click(function () {
   previous_fs = $(this).parent().prev();
 
   //show the previous fieldset
-  previous_fs.show().addClass('animated fadeInLeft');
+  previous_fs.removeClass('animated fadeInRight').show().addClass('animated fadeInLeft');
   current_fs.hide();
   //hide the current fieldset
   //current_fs.animate({opacity: 0}, {
@@ -99,13 +117,23 @@ $(".previous").click(function () {
 });
 
 $('.sent').click(function () {
-  location.reload();
+  $('#fifthSet').hide();
+  $('#firstSet').show().addClass('animated fadeInRight');
+  clearTimeout(timerSubmit);
+  increment=0;
+
+  // dodat funkciju da cisti sve inpute i combobox
+  $('.msform')[0].reset();
 });
+
+var timerSubmit;
 
 function check(increment) {
   if (increment == 4) {
-    setTimeout(function () {
-      location.reload();          // ne reload, hide/show
+    timerSubmit = setTimeout(function () {
+      $('#fifthSet').hide();
+      $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
+      increment=0;
     }, 7000);
   }
 };
@@ -200,6 +228,10 @@ function firstSlide() {
   $('.bullet#bul1').css({'background-color': 'black', 'opacity': '0.5'});
   $('#firstImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 1;
+  window.clearTimeout(timeout);
+  timeout = window.setInterval(function () {
+    functionArray[intervalIndex++ % functionArray.length]();
+  }, 7000);
 }
 
 function secondSlide() {
@@ -208,6 +240,10 @@ function secondSlide() {
   $('.bullet#bul2').css({'background-color': 'black', 'opacity': '0.5'});
   $('#secondImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 2;
+  window.clearTimeout(timeout);
+  timeout = window.setInterval(function () {
+    functionArray[intervalIndex++ % functionArray.length]();
+  }, 7000);
 }
 
 function thirdSlide() {
@@ -216,6 +252,10 @@ function thirdSlide() {
   $('.bullet#bul3').css({'background-color': 'black', 'opacity': '0.5'});
   $('#thirdImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 3;
+  window.clearTimeout(timeout);
+  timeout = window.setInterval(function () {
+    functionArray[intervalIndex++ % functionArray.length]();
+  }, 7000);
 }
 
 function fourthSlide() {
@@ -224,6 +264,10 @@ function fourthSlide() {
   $('.bullet#bul4').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fourthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 4;
+  window.clearTimeout(timeout);
+  timeout = window.setInterval(function () {
+    functionArray[intervalIndex++ % functionArray.length]();
+  }, 7000);
 }
 
 function fifthSlide() {
@@ -232,11 +276,26 @@ function fifthSlide() {
   $('.bullet#bul5').css({'background-color': 'black', 'opacity': '0.5'});
   $('#fifthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 5;
+  window.clearTimeout(timeout);
+  timeout = window.setInterval(function () {
+    functionArray[intervalIndex++ % functionArray.length]();
+  }, 7000);
+}
+
+function formSlideOne() {
+
+}
+
+function formSlideTwo() {
+
+}
+function formSlideThree() {
+
 }
 
 var functionArray = [firstSlide, secondSlide, thirdSlide, fourthSlide, fifthSlide];
 
-window.setInterval(function () {
+var timeout = window.setInterval(function () {
   functionArray[intervalIndex++ % functionArray.length]();
 }, 7000);
 

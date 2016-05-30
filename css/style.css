@@ -106,7 +106,8 @@ html {
   font-family: GothamPro-Bold;
   font-size: 14px;
   color: #ffffff;
-  margin-left: -180px;
+  text-align: center;
+  margin-top:25px;
 }
 
 .navbar {
@@ -189,10 +190,7 @@ html {
   font-size: 20px;
   line-height: 1.3;
   color: #ffffff;
-  margin-left: -100px;
-  margin-top: -40px;
-  letter-spacing: 1px;
-  position: absolute;
+  margin-top: -45px;
 }
 
 .titleText h4 {
@@ -204,45 +202,15 @@ html {
   margin-top:30px;
 }
 
-.titleText {
-  width: 600px;
-  height: 159px;
-  font-family: GothamPro;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
-  margin-top: 233px;
-  font-size: 51px;
-  line-height: 1.0;
-  margin-bottom: 35px;
-}
-
-.titleText h1 {
-  font-size: 51px;
-  font-weight: lighter;
-}
-
 .titleText span h1 {
   width: 841px;
   height: 106px;
   font-family: GothamPro-Light;
   line-height: 1.0;
-  margin-left: -100px;
 }
 
 .titleText h1 span {
   font-family: GothamPro-Bold;
-}
-
-.titleText h3 {
-  font-family: GothamPro-Medium;
-  font-size: 20px;
-  line-height: 1.3;
-  color: #ffffff;
-  margin-left: -100px;
-  margin-top: -40px;
-  letter-spacing: 1px;
-  position: absolute;
 }
 
 .testimonials {
