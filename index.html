@@ -56,13 +56,6 @@
           <button type="submit" name="next" class="next action-button continue">CONTINUE &nbsp<span
             class="fa fa-arrow-right" aria-hidden="true"></span></button>
 
-
-          <!--<div class="input-group">-->
-          <!--<input type="text" class="form-control">-->
-          <!--<span class="input-group-btn">-->
-          <!--<button class="btn btn-default" type="button">CONTINUE</button>-->
-          <!--</span>-->
-          <!--</div>-->
         </fieldset>
         <fieldset data-check-id="2">
           <div class="container titleText">
@@ -70,7 +63,8 @@
               <div class="col-sm-12"><h1>You have not becouse you <strong>ask</strong> not</h1></div>
             </div>
           </div>
-          <select title="Choose category" class="selectpicker" id="selectBox">
+          <select id="selectBox" class="inputField">
+            <option selected disabled>Choose category</option>
             <option value="interior">Interior</option>
             <option value="fashion">Fashion</option>
             <option value="gadgets">Gadgets</option>
@@ -81,9 +75,9 @@
           <br>
 
           <div id="carsDropdown">
-            <select name="Year" id="yearRef" title="Year"></select>
-            <select name="Make" id="makeRef" title="Make"></select>
-            <select name="Model" id="modelRef" title="Model"></select>
+            <select name="Year" id="yearRef" title="Year" class="jsonFilter"></select>
+            <select name="Make" id="makeRef" title="Make" class="jsonFilter"></select>
+            <select name="Model" id="modelRef" title="Model" class="jsonFilter"></select>
           </div>
 
           <input type="button" name="previous" class="previous action-button" value="Back">
@@ -97,9 +91,9 @@
               <div class="col-sm-12"><h1>You have not becouse you <strong>ask</strong> not</h1></div>
             </div>
           </div>
-          <input type="text" id="username" name="username" placeholder="Name" required><br>
-          <input type="email" id="email" name="email" placeholder="Email" required><br>
-          <input type="number" name="phone" placeholder="Phone"><br>
+          <input type="text" id="username" name="username" placeholder="Name" class="inputField"><br>
+          <input type="email" id="email" name="email" placeholder="Email" class="inputField"><br>
+          <input type="number" name="phone" placeholder="Phone" class="inputField"><br>
           <input type="button" name="previous" class="previous action-button" value="Back">
           <input type="button" name="next" class="next action-button" value="Next">
         </fieldset>
@@ -111,8 +105,8 @@
                 <h1>You have not becouse you <strong>ask</strong> not</h1></div>
             </div>
           </div>
-          <input name="q3" placeholder="Nesto 2"><br>
-          <input name="q4" placeholder="Nesto 3"><br>
+          <input name="q3" placeholder="Nesto 2" class="inputField"><br>
+          <input name="q4" placeholder="Nesto 3" class="inputField"><br>
           <input type="button" name="previous" class="previous action-button" value="Back"/>
           <input type="submit" name="submit" class="submit action-button" value="Submit"/>
         </fieldset>

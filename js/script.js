@@ -15,7 +15,7 @@ $(function ($) {
 });
 
 var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset animation properties
+//var left, opacity, scale; //fieldset animation properties
 var animating; //flag to prevent quick multi-click glitches
 var increment = 0;
 
@@ -25,34 +25,35 @@ $(".next, .submit").click(function () {
     increment++;
     //check(increment);
     //document.getElementById("inputQuestion").style.background = "white";
-    if (animating) return false;
-    animating = true;
+    //if (animating) return false;
+    //animating = true;
 
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
     //show the next fieldset
-    next_fs.show();
+    next_fs.show().addClass('animated fadeInLeft');
+    current_fs.hide();
     //hide the current fieldset
-    current_fs.animate({opacity: 0}, {
-      step: function (now) {
-        //now = opacity za current_fs
-        //1. scale current_fs down to 80%
-        scale = 1 - (1 - now) * 0.2;
-        //2. bring next_fs from the right(50%)
-        left = (now * 50) + "%";
-        //3. increase opacity of next_fs to 1 as it moves in
-        opacity = 1 - now;
-        current_fs.css({'transform': 'scale(' + scale + ')'});
-        next_fs.css({'left': left, 'opacity': opacity});
-      },
-      duration: 800,
-      complete: function () {
-        current_fs.hide();
-        animating = false;
-      },
-      //jquery easing
-      easing: 'easeInQuint'
-    });
+    //current_fs.animate({opacity: 0}, {
+    //  step: function (now) {
+    //    //now = opacity za current_fs
+    //    //1. scale current_fs down to 80%
+    //    scale = 1 - (1 - now) * 0.2;
+    //    //2. bring next_fs from the right(50%)
+    //    //left = (now * 50) + "%";
+    //    //3. increase opacity of next_fs to 1 as it moves in
+    //    opacity = 1 - now;
+    //    current_fs.css({'transform': 'scale(' + scale + ')'});
+    //    //next_fs.css({'left': left, 'opacity': opacity});
+    //  },
+    //  duration: 800,
+    //  complete: function () {
+    //    current_fs.hide();
+    //    animating = false;
+    //  },
+    //  //jquery easing
+    //  easing: 'easeInQuint'
+    //});
   }
   else {
     $('#tooltip2').tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
@@ -65,35 +66,36 @@ $(".next, .submit").click(function () {
 
 $(".previous").click(function () {
   increment--;
-  if (animating) return false;
-  animating = true;
+  //if (animating) return false;
+  //animating = true;
 
   current_fs = $(this).parent();
   previous_fs = $(this).parent().prev();
 
   //show the previous fieldset
-  previous_fs.show();
+  previous_fs.show().addClass('animated fadeInLeft');
+  current_fs.hide();
   //hide the current fieldset
-  current_fs.animate({opacity: 0}, {
-    step: function (now) {
-      //now = opacity za current_fs
-      //1. scale previous_fs from 80% to 100%
-      scale = 0.8 + (1 - now) * 0.2;
-      //2. take current_fs to the right(50%) - from 0%
-      left = ((1 - now) * 50) + "%";
-      //3. increase opacity of previous_fs to 1 as it moves in
-      opacity = 1 - now;
-      current_fs.css({'left': left});
-      previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
-    },
-    duration: 600,
-    complete: function () {
-      current_fs.hide();
-      animating = false;
-    },
-    //jquery easing
-    easing: 'easeInQuint'
-  });
+  //current_fs.animate({opacity: 0}, {
+  //  step: function (now) {
+  //    //now = opacity za current_fs
+  //    //1. scale previous_fs from 80% to 100%
+  //    scale = 0.8 + (1 - now) * 0.2;
+  //    //2. take current_fs to the right(50%) - from 0%
+  //    //left = ((1 - now) * 50) + "%";
+  //    //3. increase opacity of previous_fs to 1 as it moves in
+  //    opacity = 1 - now;
+  //    //current_fs.css({'left': left});
+  //    previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+  //  },
+  //  duration: 600,
+  //  complete: function () {
+  //    current_fs.hide();
+  //    animating = false;
+  //  },
+  //  //jquery easing
+  //  easing: 'easeInQuint'
+  //});
 });
 
 $('.sent').click(function () {
@@ -238,17 +240,14 @@ window.setInterval(function () {
   functionArray[intervalIndex++ % functionArray.length]();
 }, 7000);
 
-var selPicker = $('.selectpicker');
+var selectBox = $('#selectBox');
 var carsDrop = $('#carsDropdown');
 
-selPicker.selectpicker({
-  size: 6
-});
-
-
 var cars;
-
-
+var keys
+var yearVar;
+var makeVar;
+var modelVar;
 //
 //$.getJSON("cars.json", function (data) {
 //  //console.log(typeof data);
@@ -276,7 +275,8 @@ var jsonMake = [];
 var jsonModel = [];
 
 function arrayOfKeys(key) {
-  for (var obj in key) break;  {
+  for (var obj in key) break;
+  {
     if (key.hasOwnProperty(obj)) {
       for (var prop in key[obj]) {
         if (!jsonKeys.hasOwnProperty(prop)) {
@@ -347,7 +347,7 @@ function arrayOfModel(models) {
 //  return filteredYears;
 //}
 
-function showYears(years){
+function showYears(years) {
   $.each(years, function (key, value) {
     yearRef
       .append($("<option>")
@@ -358,7 +358,7 @@ function showYears(years){
   });
 }
 
-function showModels(model){
+function showModels(model) {
   $.each(model, function (key, value) {
     modelRef
       .append($("<option>")
@@ -369,7 +369,7 @@ function showModels(model){
   });
 }
 
-function showMakes(make){
+function showMakes(make) {
   $.each(make, function (key, value) {
     makeRef
       .append($("<option>")
@@ -380,10 +380,10 @@ function showMakes(make){
   });
 }
 
-function removeDuplicateMakes(){
+function removeDuplicateMakes() {
   var usedNames = {};
   $("#makeRef > option").each(function () {
-    if(usedNames[this.text]) {
+    if (usedNames[this.text]) {
       $(this).remove();
     } else {
       usedNames[this.text] = this.value;
@@ -395,21 +395,28 @@ var yearRef = $('#yearRef');
 var makeRef = $('#makeRef');
 var modelRef = $('#modelRef');
 
-selPicker.on('change', function () {
+selectBox.on('change', function () {
   if ($('option[value="cars"]').is(':selected')) {
 
     $.getJSON("cars.json", function (data) {
       cars = data;
-      //var keys = arrayOfKeys(cars);   //ovo je da stavi u title + ovo par redova niže, ali ne radi mi
+      keys = arrayOfKeys(cars);
       var years = arrayOfYears(cars);
       var model = arrayOfModel(cars);
       var make = arrayOfMake(cars);
+
+      yearVar = keys[0];
+      makeVar = keys[1];
+      modelVar = keys[2];
+
+      capitalizeAndFillYear(yearVar);
+      capitalizeAndFillMake(makeVar);
+      capitalizeAndFillModel(modelVar);
+
       showYears(years);
       showMakes(make);
       showModels(model);
       removeDuplicateMakes();
-      //yearRef.attr('title', 'aaaaaaa');
-      //makeRef.prop('title', 'aaaaaaa');
 
       carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
       //printCars()
@@ -419,6 +426,44 @@ selPicker.on('change', function () {
     carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
   }
 });
+
+String.prototype.capitalizeFirstLetter = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
+function capitalizeAndFillYear(yearVar) {
+
+  var year = yearVar.capitalizeFirstLetter();
+
+  yearRef
+    .append($("<option>")
+      .attr("value", year)
+      .text(year))
+    .append(year)
+    .append("</option>");
+}
+
+function capitalizeAndFillMake(makeVar) {
+  var make = makeVar.capitalizeFirstLetter();
+
+  makeRef
+    .append($("<option>")
+      .attr("value", make)
+      .text(make))
+    .append(make)
+    .append("</option>");
+}
+
+function capitalizeAndFillModel(modelVar) {
+  var model = modelVar.capitalizeFirstLetter();
+
+  modelRef
+    .append($("<option>")
+      .attr("value", model)
+      .text(model))
+    .append(model)
+    .append("</option>");
+}
 
 yearRef.change(function () {
 
@@ -432,12 +477,16 @@ yearRef.change(function () {
   modelRef.find('option')
     .remove();
 
+  capitalizeAndFillMake(makeVar);
+  capitalizeAndFillModel(modelVar);
+
   showMakes(makes);
   removeDuplicateMakes();
   showModels(models);
 });
 
 makeRef.change(function () {
+
 
   var currentYear = $('#yearRef option:selected').text();
   var currentMake = $('#makeRef option:selected').text();
@@ -446,6 +495,7 @@ makeRef.change(function () {
   modelRef.find('option')
     .remove();
 
+  capitalizeAndFillModel(modelVar);
   showModels(models);
 });
 
