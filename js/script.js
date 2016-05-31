@@ -23,6 +23,7 @@ var increment = 0;
 $(".next, .submit").click(function () {
   if ($('#inputQuestion').val().length !== 0) {
     increment++;
+    catBulColor();
     check(increment);
     //document.getElementById("inputQuestion").style.background = "white";
     //if (animating) return false;
@@ -59,31 +60,96 @@ $(".next, .submit").click(function () {
     $('#tooltip2').tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
   }
 
-  if (increment === 2) {
-    $('.msform').validate({ // initialize the plugin
-      rules: {
-        name: {
-          required: true,
-          minlength: 1
-        },
-        email: {
-          required: true,
-          email: true
-        }
-      },
-      submitHandler: function (form) { // for demo
-        return false; // for demo
-      }
-    });
-  }
+  //if (increment === 2) {
+  //  $('.msform').validate({ // initialize the plugin
+  //    rules: {
+  //      name: {
+  //        required: true,
+  //        minlength: 1
+  //      },
+  //      email: {
+  //        required: true,
+  //        email: true
+  //      }
+  //    },
+  //    submitHandler: function (form) { // for demo
+  //      return false; // for demo
+  //    }
+  //  });
+  //}
 });
 
 //$('a.nav-link').hover(function () {
 //  $(this).css('width','180');
 //});
 
+
+// form bullet scroll
+var catBul1 = $('.catBul1');
+var catBul2 = $('.catBul2');
+var catBul3 = $('.catBul3');
+var allCatBul = $('.catBullet');
+var secondSet = $('#secondSet');
+var thirdSet = $('#thirdSet');
+var fourthSet = $('#fourthSet');
+
+function catBulColor() {
+  if (increment === 1) {
+    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
+    catBul1.css({'background-color': 'black', 'opacity': '0.5'});
+  }
+
+  if (increment === 2) {
+    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
+    catBul2.css({'background-color': 'black', 'opacity': '0.5'});
+  }
+
+  if (increment === 3) {
+    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
+    catBul3.css({'background-color': 'black', 'opacity': '0.5'});
+  }
+}
+
+catBul1.click(function () {
+  secondSet.removeClass('animated fadeInRight').show().addClass('animated fadeInLeft');
+  thirdSet.hide();
+  fourthSet.hide();
+
+  increment = 1;
+  catBulColor();
+});
+
+catBul2.click(function () {
+  if(increment === 1){
+    secondSet.hide();
+    thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInRight');
+    fourthSet.hide();
+  }
+
+  if(increment === 3){
+  secondSet.hide();
+  thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInLeft');
+  fourthSet.hide();
+  }
+
+  increment = 2;
+  catBulColor();
+});
+
+catBul3.click(function () {
+  secondSet.hide();
+  thirdSet.hide();
+  fourthSet.removeClass('animated fadeInLeft').show().addClass('animated fadeInRight')
+  increment = 3;
+  catBulColor();
+});
+
+
+//back button click
+
 $(".previous").click(function () {
   increment--;
+  catBulColor();
   //if (animating) return false;
   //animating = true;
 
@@ -116,14 +182,15 @@ $(".previous").click(function () {
   //});
 });
 
+
 $('.sent').click(function () {
   $('#fifthSet').hide();
   $('#firstSet').show().addClass('animated fadeInRight');
   clearTimeout(timerSubmit);
-  increment=0;
+  increment = 0;
 
-  // dodat funkciju da cisti sve inpute i combobox
   $('.msform')[0].reset();
+
 });
 
 var timerSubmit;
@@ -133,7 +200,7 @@ function check(increment) {
     timerSubmit = setTimeout(function () {
       $('#fifthSet').hide();
       $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
-      increment=0;
+      increment = 0;
     }, 7000);
   }
 };
@@ -281,17 +348,17 @@ function fifthSlide() {
     functionArray[intervalIndex++ % functionArray.length]();
   }, 7000);
 }
-
-function formSlideOne() {
-
-}
-
-function formSlideTwo() {
-
-}
-function formSlideThree() {
-
-}
+//
+//function formSlideOne() {
+//
+//}
+//
+//function formSlideTwo() {
+//
+//}
+//function formSlideThree() {
+//
+//}
 
 var functionArray = [firstSlide, secondSlide, thirdSlide, fourthSlide, fifthSlide];
 
