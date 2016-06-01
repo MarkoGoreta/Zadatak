@@ -3,7 +3,7 @@
  */
 
 var tooltip1 = $('#tooltip1');
-
+var tooltip2 = $('#tooltip2');
 $(function ($) {
   //toggle popover on load
   //$('[data-toggle="tooltip"]').tooltip().tooltip('show');
@@ -12,6 +12,12 @@ $(function ($) {
   $('html').click(function () {
     tooltip1.tooltip('disable').tooltip('hide');
   });
+
+  $('#inputQuestion').hover(function () {
+      tooltip1.tooltip('disable').tooltip('hide');
+      tooltip2.tooltip('hide');
+    }
+  );
 });
 
 var current_fs, next_fs, previous_fs; //fieldsets
@@ -57,7 +63,7 @@ $(".next, .submit").click(function () {
     //});
   }
   else {
-    $('#tooltip2').tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
+    tooltip2.tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
   }
 
   //if (increment === 2) {
@@ -95,19 +101,27 @@ var fourthSet = $('#fourthSet');
 
 function catBulColor() {
   if (increment === 1) {
-    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
-    catBul1.css({'background-color': 'black', 'opacity': '0.5'});
+    allCatBul.css({'background-color': '#ffffff', 'opacity': '0.3'});
+    catBul1.css({'background-color': '#ffffff', 'opacity': '1'});
   }
 
   if (increment === 2) {
-    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
-    catBul2.css({'background-color': 'black', 'opacity': '0.5'});
+    allCatBul.css({'background-color': '#ffffff', 'opacity': '0.3'});
+    catBul2.css({'background-color': '#ffffff', 'opacity': '1'});
   }
 
   if (increment === 3) {
-    allCatBul.css({'background-color': '#d8d8d8', 'opacity': '1'});
-    catBul3.css({'background-color': 'black', 'opacity': '0.5'});
+    allCatBul.css({'background-color': '#ffffff', 'opacity': '0.3'});
+    catBul3.css({'background-color': '#ffffff', 'opacity': '1'});
   }
+}
+
+
+function resetForm() {
+  $('.msform')[0].reset();
+  carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
+  tooltip1.tooltip('enable').tooltip('show');
+  buttonCat.addClass('buttonCategory');
 }
 
 catBul1.click(function () {
@@ -120,16 +134,16 @@ catBul1.click(function () {
 });
 
 catBul2.click(function () {
-  if(increment === 1){
+  if (increment === 1) {
     secondSet.hide();
     thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInRight');
     fourthSet.hide();
   }
 
-  if(increment === 3){
-  secondSet.hide();
-  thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInLeft');
-  fourthSet.hide();
+  if (increment === 3) {
+    secondSet.hide();
+    thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInLeft');
+    fourthSet.hide();
   }
 
   increment = 2;
@@ -189,8 +203,7 @@ $('.sent').click(function () {
   clearTimeout(timerSubmit);
   increment = 0;
 
-  $('.msform')[0].reset();
-
+  resetForm();
 });
 
 var timerSubmit;
@@ -201,6 +214,8 @@ function check(increment) {
       $('#fifthSet').hide();
       $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
       increment = 0;
+
+      resetForm();
     }, 7000);
   }
 };
@@ -370,7 +385,7 @@ var selectBox = $('#selectBox');
 var carsDrop = $('#carsDropdown');
 
 var cars;
-var keys
+var keys;
 var yearVar;
 var makeVar;
 var modelVar;
@@ -521,6 +536,8 @@ var yearRef = $('#yearRef');
 var makeRef = $('#makeRef');
 var modelRef = $('#modelRef');
 
+var buttonCat = $('.buttonCategory');
+
 selectBox.on('change', function () {
   if ($('option[value="cars"]').is(':selected')) {
 
@@ -545,11 +562,21 @@ selectBox.on('change', function () {
       removeDuplicateMakes();
 
       carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
+      buttonCat.addClass('buttonAnimDown');
+
+      setTimeout(function () {
+        carsDrop.removeClass('animated fadeInDown')
+        buttonCat.removeClass('buttonCategory').removeClass('buttonAnimDown');
+      }, 1000);
       //printCars()
     });
   }
-  else if (carsDrop.css('visibility', 'visible')) {
+  else if (carsDrop.css('visibility') == 'visible') {
     carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
+    buttonCat.addClass('buttonAnimUp');
+    setTimeout(function () {
+      buttonCat.removeClass('buttonAnimUp').addClass('buttonCategory');
+    }, 1000)
   }
 });
 
