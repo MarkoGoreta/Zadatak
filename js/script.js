@@ -2,11 +2,12 @@
  * Created by Marko on 21.5.2016..
  */
 
+//******************************  TOOLTIP CONTROL  ******************************//
+
 var tooltip1 = $('#tooltip1');
 var tooltip2 = $('#tooltip2');
+
 $(function ($) {
-  //toggle popover on load
-  //$('[data-toggle="tooltip"]').tooltip().tooltip('show');
   //hide and disable tooltip on mouseclick
   tooltip1.tooltip().tooltip('show');
   $('html').click(function () {
@@ -20,72 +21,81 @@ $(function ($) {
   );
 });
 
-var current_fs, next_fs, previous_fs; //fieldsets
-//var left, opacity, scale; //fieldset animation properties
-var animating; //flag to prevent quick multi-click glitches
-var increment = 0;
+//******************************  NEXT BUTTON CLICK  ******************************//
 
+var current_fs, next_fs, previous_fs;
+var increment = 0;
 
 $(".next, .submit").click(function () {
   if ($('#inputQuestion').val().length !== 0) {
     increment++;
     catBulColor();
     check(increment);
-    //document.getElementById("inputQuestion").style.background = "white";
-    //if (animating) return false;
-    //animating = true;
-    //checkUsernameAndEmail();
+
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
 
-    //show the next fieldset
     next_fs.show().addClass('animated fadeInRight');
     current_fs.hide();
-    //hide the current fieldset
-    //current_fs.animate({opacity: 0}, {
-    //  step: function (now) {
-    //    //now = opacity za current_fs
-    //    //1. scale current_fs down to 80%
-    //    scale = 1 - (1 - now) * 0.2;
-    //    //2. bring next_fs from the right(50%)
-    //    //left = (now * 50) + "%";
-    //    //3. increase opacity of next_fs to 1 as it moves in
-    //    opacity = 1 - now;
-    //    current_fs.css({'transform': 'scale(' + scale + ')'});
-    //    //next_fs.css({'left': left, 'opacity': opacity});
-    //  },
-    //  duration: 800,
-    //  complete: function () {
-    //    current_fs.hide();
-    //    animating = false;
-    //  },
-    //  //jquery easing
-    //  easing: 'easeInQuint'
-    //});
   }
   else {
-    tooltip2.tooltip('enable').tooltip('show').tooltip('disable');  //tooltipster
+    tooltip2.tooltip('enable').tooltip('show').tooltip('disable');
   }
-
-  //if (increment === 2) {
-  //  $('.msform').validate({ // initialize the plugin
-  //    rules: {
-  //      name: {
-  //        required: true,
-  //        minlength: 1
-  //      },
-  //      email: {
-  //        required: true,
-  //        email: true
-  //      }
-  //    },
-  //    submitHandler: function (form) { // for demo
-  //      return false; // for demo
-  //    }
-  //  });
-  //}
 });
 
+//******************************  BACK BUTTON CLICK  ******************************//
+
+$(".previous").click(function () {
+  increment--;
+  catBulColor();
+
+  current_fs = $(this).parent();
+  previous_fs = $(this).parent().prev();
+
+  //show the previous fieldset
+  previous_fs.removeClass('animated fadeInRight').show().addClass('animated fadeInLeft');
+  current_fs.hide();
+});
+
+//******************************  SENT (SUBMIT) BUTTON CLICK  ******************************//
+
+$('.sent').click(function () {
+  $('#fifthSet').hide();
+  $('#firstSet').show().addClass('animated fadeInRight');
+  clearTimeout(timerSubmit);
+  increment = 0;
+
+  resetForm();
+});
+
+//******************************  FORM RESET  ******************************//
+
+var timerSubmit;
+
+function check(increment) {
+  if (increment == 4) {
+    timerSubmit = setTimeout(function () {
+      $('#fifthSet').hide();
+      $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
+      increment = 0;
+
+      resetForm();
+    }, 7000);
+  }
+};
+
+//******************************  FORM RESET FUNCTION  ******************************//
+
+function resetForm() {
+  $('.msform')[0].reset();
+  carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
+  setTimeout(function () {
+    tooltip1.tooltip('enable').tooltip('show');
+  }, 1000);
+  buttonCat.addClass('buttonCategory');
+}
+
+//******************************  FORM EMAIL AND USERNAME VALIDATION  ******************************//
 
 var username = $('#username');
 var email = $('#email');
@@ -111,6 +121,7 @@ $('.formValidation').on('click', function () {
   }
 
   if (username.val().length === 0 && email.val().length === 0) {
+    removeInvalidEmailErrorWithEmpty();
     var name = checkUsername();
     var mail = checkEmail();
     return name && mail;
@@ -121,6 +132,7 @@ $('.formValidation').on('click', function () {
   }
 
   if (email.val().length === 0) {
+    removeInvalidEmailErrorWithEmpty();
     return checkEmail();
   }
 
@@ -141,7 +153,6 @@ $('.formValidation').on('click', function () {
   current_fs = $(this).parent();
   next_fs = $(this).parent().next();
 
-  //show the next fieldset
   next_fs.show().addClass('animated fadeInRight');
   current_fs.hide();
 });
@@ -159,7 +170,7 @@ email.keypress(function () {
     checkIfEmailExists = false;
   }
   if (checkIfEmailIsValid === true) {
-    removeEmailError();
+    removeInvalidEmailError();
     checkIfEmailIsValid = false;
   }
 });
@@ -191,7 +202,7 @@ function showEmailError() {
 }
 
 function showEmailNotValid() {
-  $("<br id='breakEmail'><p class='errorMessage' id='emailError' >Enter valid email.</p>").insertAfter("#email");
+  $("<br id='breakInvalidEmail'><p class='errorMessage' id='emailInvalidError' >Enter valid email.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
 }
 
@@ -215,7 +226,23 @@ function removeEmailError() {
   email.css('border', '');
 }
 
-// form bullet scroll
+function removeInvalidEmailError(){
+  $('#emailInvalidError').fadeOut(700, function () {
+    $(this).remove();
+  });
+  $('#breakInvalidEmail').fadeOut(700, function () {
+    $(this).remove();
+  });
+  email.css('border', '');
+}
+
+function removeInvalidEmailErrorWithEmpty(){
+  $('#emailInvalidError').remove();
+  $('#breakInvalidEmail').remove();
+}
+
+//******************************  FORM BULLET SCROLL  ******************************//
+
 var catBul1 = $('.catBul1');
 var catBul2 = $('.catBul2');
 var catBul3 = $('.catBul3');
@@ -239,15 +266,6 @@ function catBulColor() {
     allCatBul.css({'background-color': '#ffffff', 'opacity': '0.3'});
     catBul3.css({'background-color': '#ffffff', 'opacity': '1'});
   }
-}
-
-function resetForm() {
-  $('.msform')[0].reset();
-  carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
-  setTimeout(function () {
-    tooltip1.tooltip('enable').tooltip('show');
-  }, 1000);
-  buttonCat.addClass('buttonCategory');
 }
 
 catBul1.click(function () {
@@ -284,12 +302,11 @@ catBul3.click(function () {
     thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInRight');
     fourthSet.hide();
     $('.formValidation').trigger('click');
-    if(validated === true)
-    {
+    if (validated === true) {
       increment = 3;
       catBulColor();
     }
-    else{
+    else {
       increment = 2;
       catBulColor();
     }
@@ -302,116 +319,13 @@ catBul3.click(function () {
       catBulColor();
     }
   }
-
 });
 
+//******************************  FORM - PREVENT DEFAULT  ******************************//
 
-//back button click
-
-$(".previous").click(function () {
-  increment--;
-  catBulColor();
-  //if (animating) return false;
-  //animating = true;
-
-  current_fs = $(this).parent();
-  previous_fs = $(this).parent().prev();
-
-  //show the previous fieldset
-  previous_fs.removeClass('animated fadeInRight').show().addClass('animated fadeInLeft');
-  current_fs.hide();
-  //hide the current fieldset
-  //current_fs.animate({opacity: 0}, {
-  //  step: function (now) {
-  //    //now = opacity za current_fs
-  //    //1. scale previous_fs from 80% to 100%
-  //    scale = 0.8 + (1 - now) * 0.2;
-  //    //2. take current_fs to the right(50%) - from 0%
-  //    //left = ((1 - now) * 50) + "%";
-  //    //3. increase opacity of previous_fs to 1 as it moves in
-  //    opacity = 1 - now;
-  //    //current_fs.css({'left': left});
-  //    previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
-  //  },
-  //  duration: 600,
-  //  complete: function () {
-  //    current_fs.hide();
-  //    animating = false;
-  //  },
-  //  //jquery easing
-  //  easing: 'easeInQuint'
-  //});
+$('form').click(function (event) {
+    event.preventDefault();
 });
-
-
-$('.sent').click(function () {
-  $('#fifthSet').hide();
-  $('#firstSet').show().addClass('animated fadeInRight');
-  clearTimeout(timerSubmit);
-  increment = 0;
-
-  resetForm();
-});
-
-var timerSubmit;
-
-function check(increment) {
-  if (increment == 4) {
-    timerSubmit = setTimeout(function () {
-      $('#fifthSet').hide();
-      $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
-      increment = 0;
-
-      resetForm();
-    }, 7000);
-  }
-};
-
-//check for input
-//function check($fs) {
-//  switch ($fs.attr('data-check-id')) {
-//    case '1':  //1st fieldset
-//      $i_question = $('input[name="q1"]', $fs);
-//
-//      //QUESTION
-//      if ($i_question.val().length == 0) {
-//        $i_question.addClass('error');
-//      }
-//      else {
-//        $i_question.removeClass('error');
-//      }
-//      break;
-//    case '3': //3rd fieldset
-//      $i_name = $('input[name="name"]', $fs);
-//      $i_email = $('input[name="email"]', $fs);
-//
-//      //NAME
-//      if ($i_name.val().length < 3) {
-//        $i_name.addClass('error');
-//      }
-//      else {
-//        $i_name.removeClass('error');
-//      }
-//
-//      //EMAIL
-//      if ($i_email.val().length < 6) {
-//        $i_email.addClass('error');
-//      }
-//      else {
-//        $i_email.removeClass('error');
-//      }
-//      break;
-//  }
-//}
-
-
-$(function ($) {
-  $('.msform').validate({ // initialize the plugin
-    submitHandler: function () { // for demo
-    }
-  });
-});
-
 
 var imgCont1 = $('.imageContainer1');
 var imgCont2 = $('.imageContainer2');
@@ -434,7 +348,7 @@ $(function () {
   });
 });
 
-//testimonials slider
+//******************************  TESTIMONIALS SLIDER  ******************************//
 
 var intervalIndex = 1;
 var slierDiv = $('.slider > div');
@@ -500,46 +414,20 @@ function fifthSlide() {
   }, 7000);
 }
 
-
 var functionArray = [firstSlide, secondSlide, thirdSlide, fourthSlide, fifthSlide];
 
 var timeout = window.setInterval(function () {
   functionArray[intervalIndex++ % functionArray.length]();
 }, 7000);
 
+//******************************  FILTER JSON FILE - CARS  ******************************//
+
 var selectBox = $('#selectBox');
 var carsDrop = $('#carsDropdown');
 
-var cars;
-var keys;
-var yearVar;
-var makeVar;
-var modelVar;
-//
-//$.getJSON("cars.json", function (data) {
-//  //console.log(typeof data);
-//  //console.log(data);
-//  cars = data;
-//  //printCars(cars);
-//  //
-//  //var newList = filterCars("1955");
-//  //printCars(newList);
-//  //
-//  //var keys = arrayOfKeys(cars);
-//  //console.log(keys[0]);
-//  //console.log(keys[1]);
-//  //console.log(keys[2]);
-//
-//  arrayOfKeys(cars);
-//  //arrayOfYears(cars);
-//  //arrayOfMake(cars);
-//  //arrayOfModel(cars);
-//});
+var cars, keys, yearVar, makeVar, modelVar;
 
-var jsonKeys = [];
-var jsonYears = [];
-var jsonMake = [];
-var jsonModel = [];
+var jsonKeys = [], jsonYears = [], jsonMake = [], jsonModel = [];
 
 function arrayOfKeys(key) {
   for (var obj in key) break;
@@ -562,7 +450,6 @@ function arrayOfYears(years) {
     }
   });
   return jsonYears;
-  //console.log(jsonYears);
 }
 
 function arrayOfMake(makes) {
@@ -572,7 +459,6 @@ function arrayOfMake(makes) {
     }
   });
   return jsonMake;
-  //console.log(jsonMake);
 }
 
 function arrayOfModel(models) {
@@ -582,37 +468,7 @@ function arrayOfModel(models) {
     }
   });
   return jsonModel;
-  //console.log(jsonModel);
 }
-
-//testiranje
-
-//function printCars(filteredCars) {
-//  var list = $('#test');
-//  list.empty();
-//
-//  filteredCars.forEach(function (car) {
-//    list
-//      .append('<li>')
-//      .append('<p>').append(car.year).append('</p')
-//      .append('<p>').append(car.make).append('</p')
-//      .append('<p>').append(car.model).append('</p')
-//      .append('</li>')
-//  })
-//}
-
-//testiranje
-
-//function filterYear(year) {
-//  var filteredYears = [];
-//
-//  cars.forEach(function (car) {
-//    if (car.year === year) {
-//      filteredYears.push(car);
-//    }
-//  })
-//  return filteredYears;
-//}
 
 function showYears(years) {
   $.each(years, function (key, value) {
@@ -706,6 +562,8 @@ selectBox.on('change', function () {
   }
 });
 
+//******************************  Capitalize first letter of a string  ******************************//
+
 String.prototype.capitalizeFirstLetter = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -783,7 +641,7 @@ function filterModelsOnYear(year) {
     if (car.year === year) {
       filteredModels.push(car.model);
     }
-  })
+  });
   return filteredModels;
 }
 
@@ -793,7 +651,7 @@ function filterMakesOnYear(year) {
     if (car.year === year) {
       filteredMakes.push(car.make);
     }
-  })
+  });
   return filteredMakes;
 }
 
@@ -803,6 +661,6 @@ function filterModelOnMakesAndYear(year, make) {
     if (car.year === year && car.make === make) {
       filteredModels.push(car.model);
     }
-  })
+  });
   return filteredModels;
 }
