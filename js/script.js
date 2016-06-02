@@ -34,6 +34,7 @@ $(".next, .submit").click(function () {
     //document.getElementById("inputQuestion").style.background = "white";
     //if (animating) return false;
     //animating = true;
+    //checkUsernameAndEmail();
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
 
@@ -85,10 +86,134 @@ $(".next, .submit").click(function () {
   //}
 });
 
-//$('a.nav-link').hover(function () {
-//  $(this).css('width','180');
-//});
 
+var username = $('#username');
+var email = $('#email');
+
+var checkIfUsernameExists = false;
+var checkIfEmailExists = false;
+var checkIfEmailIsValid = false;
+var validated = false;
+
+$('.formValidation').on('click', function () {
+  var emailValue = email.val();
+  var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+  if (email.val().length !== 0 && username.val().length === 0) {
+    if (!testEmail.test(emailValue)) {
+      if (checkIfEmailIsValid === false) {
+        checkIfEmailIsValid = true;
+        showEmailNotValid();
+        return checkUsername();
+      }
+      return;
+    }
+  }
+
+  if (username.val().length === 0 && email.val().length === 0) {
+    var name = checkUsername();
+    var mail = checkEmail();
+    return name && mail;
+  }
+
+  if (username.val().length === 0) {
+    return checkUsername();
+  }
+
+  if (email.val().length === 0) {
+    return checkEmail();
+  }
+
+  if (email.val().length !== 0) {
+    if (!testEmail.test(emailValue)) {
+      if (checkIfEmailIsValid === false) {
+        checkIfEmailIsValid = true;
+        showEmailNotValid();
+        return;
+      }
+      return;
+    }
+  }
+
+  validated = true;
+  increment++;
+  catBulColor();
+  current_fs = $(this).parent();
+  next_fs = $(this).parent().next();
+
+  //show the next fieldset
+  next_fs.show().addClass('animated fadeInRight');
+  current_fs.hide();
+});
+
+username.keypress(function () {
+  if (checkIfUsernameExists === true) {
+    removeUsernameError();
+    checkIfUsernameExists = false;
+  }
+});
+
+email.keypress(function () {
+  if (checkIfEmailExists === true) {
+    removeEmailError();
+    checkIfEmailExists = false;
+  }
+  if (checkIfEmailIsValid === true) {
+    removeEmailError();
+    checkIfEmailIsValid = false;
+  }
+});
+
+function checkUsername() {
+  if (checkIfUsernameExists === false) {
+    showUsernameError();
+    checkIfUsernameExists = true;
+    validated = false;
+  }
+}
+
+function checkEmail() {
+  if (checkIfEmailExists === false) {
+    showEmailError();
+    checkIfEmailExists = true;
+    validated = false;
+  }
+}
+
+function showUsernameError() {
+  $("<br id='breakUsername'><p class='errorMessage' id='usernameError'>Username is required.</p>").insertAfter("#username");
+  username.css('border', '2px solid red');
+}
+
+function showEmailError() {
+  $("<br id='breakEmail'><p class='errorMessage' id='emailError' >Email is required.</p>").insertAfter("#email");
+  email.css('border', '2px solid red');
+}
+
+function showEmailNotValid() {
+  $("<br id='breakEmail'><p class='errorMessage' id='emailError' >Enter valid email.</p>").insertAfter("#email");
+  email.css('border', '2px solid red');
+}
+
+function removeUsernameError() {
+  $('#usernameError').fadeOut(700, function () {
+    $(this).remove();
+  });
+  $('#breakUsername').fadeOut(700, function () {
+    $(this).remove();
+  });
+  username.css('border', '');
+}
+
+function removeEmailError() {
+  $('#emailError').fadeOut(700, function () {
+    $(this).remove();
+  });
+  $('#breakEmail').fadeOut(700, function () {
+    $(this).remove();
+  });
+  email.css('border', '');
+}
 
 // form bullet scroll
 var catBul1 = $('.catBul1');
@@ -116,11 +241,12 @@ function catBulColor() {
   }
 }
 
-
 function resetForm() {
   $('.msform')[0].reset();
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
-  tooltip1.tooltip('enable').tooltip('show');
+  setTimeout(function () {
+    tooltip1.tooltip('enable').tooltip('show');
+  }, 1000);
   buttonCat.addClass('buttonCategory');
 }
 
@@ -151,11 +277,32 @@ catBul2.click(function () {
 });
 
 catBul3.click(function () {
-  secondSet.hide();
-  thirdSet.hide();
-  fourthSet.removeClass('animated fadeInLeft').show().addClass('animated fadeInRight')
-  increment = 3;
-  catBulColor();
+
+  if (increment === 1) {
+
+    secondSet.hide();
+    thirdSet.removeClass('animated fadeInRight').removeClass('animated fadeInLeft').show().addClass('animated fadeInRight');
+    fourthSet.hide();
+    $('.formValidation').trigger('click');
+    if(validated === true)
+    {
+      increment = 3;
+      catBulColor();
+    }
+    else{
+      increment = 2;
+      catBulColor();
+    }
+  }
+
+  if (increment === 2) {
+    $('.formValidation').trigger('click');
+    if (validated === true) {
+      increment = 3;
+      catBulColor();
+    }
+  }
+
 });
 
 
@@ -260,21 +407,11 @@ function check(increment) {
 
 $(function ($) {
   $('.msform').validate({ // initialize the plugin
-    rules: {
-      name: {
-        required: true,
-        minlength: 1
-      },
-      email: {
-        required: true,
-        email: true
-      }
-    },
-    submitHandler: function (form) { // for demo
-      return false; // for demo
+    submitHandler: function () { // for demo
     }
   });
 });
+
 
 var imgCont1 = $('.imageContainer1');
 var imgCont2 = $('.imageContainer2');
@@ -302,7 +439,6 @@ $(function () {
 var intervalIndex = 1;
 var slierDiv = $('.slider > div');
 var bullet = $('.bullet');
-
 
 function firstSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
@@ -363,17 +499,7 @@ function fifthSlide() {
     functionArray[intervalIndex++ % functionArray.length]();
   }, 7000);
 }
-//
-//function formSlideOne() {
-//
-//}
-//
-//function formSlideTwo() {
-//
-//}
-//function formSlideThree() {
-//
-//}
+
 
 var functionArray = [firstSlide, secondSlide, thirdSlide, fourthSlide, fifthSlide];
 
@@ -639,7 +765,6 @@ yearRef.change(function () {
 });
 
 makeRef.change(function () {
-
 
   var currentYear = $('#yearRef option:selected').text();
   var currentMake = $('#makeRef option:selected').text();

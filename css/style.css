@@ -81,10 +81,6 @@ html {
   padding-left: 65px !important;
 }
 
-.msform input.error, .msform textarea.error {
-  border: 1px solid red;
-}
-
 .msform .action-button {
   width: 171px;
   height: 47px;
@@ -101,7 +97,7 @@ html {
   text-align: center;
 }
 
-.msform .sent, .msform .next{
+.msform .sent, .msform .next, .msform .formValidation{
   background: rgb(135, 201, 63);
   position: relative;
 }
@@ -113,7 +109,7 @@ html {
 
 }
 
-.msform .next {
+.msform .next, .msform .formValidation {
   left: 22px;
 }
 
@@ -336,7 +332,6 @@ html {
   bottom: 530px;
   left: 50%;
   z-index: 1;
-  /* nikad negativni z index zbog browsera*/
 }
 
 #bul1 {
@@ -368,6 +363,22 @@ a .catBullet:hover, a .catBullet:active, a .catBullet:focus {
 
 a .catBullet:hover {
   cursor: pointer;
+}
+
+#email{
+  bottom:30px;
+}
+
+.msform #thirdSet p {
+  color: #ffffff;
+  position: relative;
+  text-align: left;
+  margin: -15px 0 -10px 0;
+  left:175px;
+  animation-name: downP;
+  animation-duration: 1s;
+  font-size: 14px;
+  font-family: GothamPro;
 }
 
 .catBullet {
@@ -490,6 +501,18 @@ a .catBullet:hover {
   0%   {bottom:0;}
   100% {bottom:60px;}
 }
+
+@-webkit-keyframes downP {
+  0%   {top:-10px; opacity:0}
+  100% {top:0; opacity:1}
+}
+
+@keyframes downP {
+  0%   {top:-10px; opacity:0}
+  100% {top:0; opacity:1}
+}
+
+
 
 .buttonAnimUp{
   -webkit-animation-name: upButtons; /* Chrome, Safari, Opera */
