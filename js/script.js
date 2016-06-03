@@ -2,6 +2,12 @@
  * Created by Marko on 21.5.2016..
  */
 
+//******************************  BOOTSTRAP SELECT  ******************************//
+var selPick = $(".selectpicker");
+selPick.selectpicker({
+  size: 6
+});
+
 //******************************  TOOLTIP CONTROL  ******************************//
 
 var tooltip1 = $('#tooltip1');
@@ -63,7 +69,6 @@ $('.sent').click(function () {
   $('#fifthSet').hide();
   $('#firstSet').show().addClass('animated fadeInRight');
   clearTimeout(timerSubmit);
-  increment = 0;
 
   resetForm();
 });
@@ -77,7 +82,6 @@ function check(increment) {
     timerSubmit = setTimeout(function () {
       $('#fifthSet').hide();
       $('#firstSet').removeClass('animated fadeInRight').show().addClass('animated fadeInRight');
-      increment = 0;
 
       resetForm();
     }, 7000);
@@ -88,6 +92,7 @@ function check(increment) {
 
 function resetForm() {
   $('.msform')[0].reset();
+  increment = 0;
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
   setTimeout(function () {
     tooltip1.tooltip('enable').tooltip('show');
@@ -449,7 +454,7 @@ function arrayOfYears(years) {
       jsonYears.push(value.year);
     }
   });
-  return jsonYears;
+  return jsonYears.sort();
 }
 
 function arrayOfMake(makes) {
@@ -458,7 +463,7 @@ function arrayOfMake(makes) {
       jsonMake.push(value.make);
     }
   });
-  return jsonMake;
+  return jsonMake.sort();
 }
 
 function arrayOfModel(models) {
@@ -467,7 +472,7 @@ function arrayOfModel(models) {
       jsonModel.push(value.model);
     }
   });
-  return jsonModel;
+  return jsonModel.sort();
 }
 
 function showYears(years) {
@@ -543,6 +548,12 @@ selectBox.on('change', function () {
       showModels(model);
       removeDuplicateMakes();
 
+      yearRef.addClass('selectpicker');
+      makeRef.addClass('selectpicker');
+      modelRef.addClass('selectpicker');
+      $('.selectpicker').selectpicker({
+        size: 11
+      }).selectpicker('refresh');
       carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
       buttonCat.addClass('buttonAnimDown');
 
@@ -560,6 +571,7 @@ selectBox.on('change', function () {
       buttonCat.removeClass('buttonAnimUp').addClass('buttonCategory');
     }, 1000)
   }
+
 });
 
 //******************************  Capitalize first letter of a string  ******************************//
@@ -573,33 +585,29 @@ function capitalizeAndFillYear(yearVar) {
   var year = yearVar.capitalizeFirstLetter();
 
   yearRef
-    .append($("<option selected disabled>")
-      .attr("value", year)
-      .text(year))
-    .append(year)
-    .append("</option>");
+    .append()
+    .attr("title", year)
+    //.append($("<option selected disabled>")
+    //  .attr("value", year)
+    //  .text(year))
+    //.append(year)
+    //.append("</option>");
 }
 
 function capitalizeAndFillMake(makeVar) {
   var make = makeVar.capitalizeFirstLetter();
 
   makeRef
-    .append($("<option selected disabled>")
-      .attr("value", make)
-      .text(make))
-    .append(make)
-    .append("</option>");
+    .append()
+    .attr("title", make)
 }
 
 function capitalizeAndFillModel(modelVar) {
   var model = modelVar.capitalizeFirstLetter();
 
   modelRef
-    .append($("<option selected disabled>")
-      .attr("value", model)
-      .text(model))
-    .append(model)
-    .append("</option>");
+    .append()
+    .attr("title", model)
 }
 
 yearRef.change(function () {
@@ -607,6 +615,10 @@ yearRef.change(function () {
   var currentYear = $('#yearRef option:selected').text();
   var models = filterModelsOnYear(currentYear);
   var makes = filterMakesOnYear(currentYear);
+
+  yearRef.removeClass('selectpicker');
+  makeRef.removeClass('selectpicker');
+  modelRef.removeClass('selectpicker');
 
   makeRef.find('option')
     .remove();
@@ -620,6 +632,12 @@ yearRef.change(function () {
   showMakes(makes);
   removeDuplicateMakes();
   showModels(models);
+
+  yearRef.addClass('selectpicker');
+  makeRef.addClass('selectpicker');
+  modelRef.addClass('selectpicker');
+
+  $('.selectpicker').selectpicker('refresh');
 });
 
 makeRef.change(function () {
@@ -628,11 +646,21 @@ makeRef.change(function () {
   var currentMake = $('#makeRef option:selected').text();
   var models = filterModelOnMakesAndYear(currentYear, currentMake);
 
+  yearRef.removeClass('selectpicker');
+  makeRef.removeClass('selectpicker');
+  modelRef.removeClass('selectpicker');
+
   modelRef.find('option')
     .remove();
 
   capitalizeAndFillModel(modelVar);
   showModels(models);
+
+  yearRef.addClass('selectpicker');
+  makeRef.addClass('selectpicker');
+  modelRef.addClass('selectpicker');
+
+  $('.selectpicker').selectpicker('refresh');
 });
 
 function filterModelsOnYear(year) {
@@ -664,3 +692,5 @@ function filterModelOnMakesAndYear(year, make) {
   });
   return filteredModels;
 }
+
+selPick.selectpicker("refresh");

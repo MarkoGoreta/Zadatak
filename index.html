@@ -78,17 +78,17 @@
             </div>
           </div>
           <br>
-          <select id="selectBox" class="inputField" >
-            <option selected disabled>Choose category</option>
-            <option value="interior">Interior</option>
-            <option value="fashion">Fashion</option>
-            <option value="gadgets">Gadgets</option>
-            <option value="cars">Cars</option>
-            <option value="tires">Tires</option>
-            <option value="kids">Kids</option>
-          </select>
-          <br>
-
+          <div class="uniqueSelect">
+            <select title="Choose category" id="selectBox" class="inputDropdown selectpicker">
+              <option value="interior">Interior</option>
+              <option value="fashion">Fashion</option>
+              <option value="gadgets">Gadgets</option>
+              <option value="cars">Cars</option>
+              <option value="tires">Tires</option>
+              <option value="kids">Kids</option>
+            </select>
+            <br>
+          </div>
           <div id="carsDropdown">
             <select name="Year" id="yearRef" title="Year" class="jsonFilter"></select>
             <select name="Make" id="makeRef" title="Make" class="jsonFilter"></select>
@@ -143,14 +143,15 @@
               </div>
             </div>
           </div>
-          <select class="inputField">
-            <option selected disabled>When do you want it?</option>
-            <option value="urgent">Urgent</option>
-            <option value="now">Now</option>
-            <option value="nextWeek">Next week</option>
-            <option value="laterMonth">Later this month</option>
-            <option value="laterYear">Later this year</option>
-          </select>
+          <div class="uniqueSelect">
+            <select title="When do you want it?" class="inputDropdown selectpicker">
+              <option value="urgent">Urgent</option>
+              <option value="now">Now</option>
+              <option value="nextWeek">Next week</option>
+              <option value="laterMonth">Later this month</option>
+              <option value="laterYear">Later this year</option>
+            </select>
+          </div>
           <input name="budget" placeholder="What is your budget?" class="inputField"><br>
           <input name="anythingElse" placeholder="Anything else" class="inputField"><br>
           <input type="button" name="previous" class="previous action-button" value="BACK"/>
@@ -163,7 +164,7 @@
               <div class="col-sm-12">
                 <span><h1>Your request has been <span>received.</span></h1></span>
                 <h3>One of our agents will contact you <br> once we've found your deal.</h3>
-                </div>
+              </div>
             </div>
             <input type="button" name="submit" class="sent action-button" value="SENT!"/>
           </div>
@@ -302,6 +303,8 @@
 <script src="js/lib/tether.min.js" type="text/javascript"></script>
 <!-- Bootstrap -->
 <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
+<!-- Bootstrap select-->
+<script src="js/lib/bootstrap-select.js" type="text/javascript"></script>
 <!-- Moja .js skripta -->
 <script src="js/script.js" type="text/javascript"></script>
 

@@ -7,17 +7,47 @@
 
 select.bs-select-hidden,
 select.selectpicker {
-  display: none !important;
+  /*display: none !important;*/
 }
 .bootstrap-select {
-  width: 220px \0;
+  width: 125px \0;
   /*IE9 and below*/
 }
-.bootstrap-select > .dropdown-toggle {
-  width: 100%;
-  padding-right: 25px;
-  z-index: 1;
+.bootstrap-select > .dropdown-toggle {  /* DROPDOWN */
+  width: 125px;
+  height: 50px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  object-fit: contain;
+  font-family: GothamPro;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #b2b2b2;
+  padding-left:20px;
+  position: relative;
 }
+
+.uniqueSelect .dropdown-toggle {  /* DROPDOWN */
+  width: 400px !important;
+  height: 50px !important;
+  background-color: #ffffff;
+  border-style: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #2C3E50;
+  outline: none;
+  object-fit: contain;
+  font-family: GothamPro;
+  font-size: 18px;
+  line-height: 1.4;
+  padding-left: 20px;
+  right:136px;
+}
+
+#fourthSet .uniqueSelect .dropdown-toggle {  /* DROPDOWN */
+  right: 141px;
+}
+
 .bootstrap-select > select {
   position: absolute !important;
   bottom: 0;
@@ -25,7 +55,7 @@ select.selectpicker {
   display: block !important;
   width: 0.5px !important;
   height: 100% !important;
-  padding:0 !important;
+  padding: 0 !important;
   opacity: 0 !important;
   border: none;
 }
@@ -44,12 +74,13 @@ select.selectpicker {
   width: auto !important;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-  width: 220px;
+  width: 125px;
+  margin-left: 7px;
 }
 .bootstrap-select .dropdown-toggle:focus {
-  outline: thin dotted #333333 !important;
-  outline: 5px auto -webkit-focus-ring-color !important;
-  outline-offset: -2px;
+  /*outline: thin dotted #333333 !important;*/
+  /*outline: 5px auto -webkit-focus-ring-color !important;*/
+  /*outline-offset: -2px;*/
 }
 .bootstrap-select.form-control {
   margin-bottom: 0;
@@ -101,9 +132,10 @@ select.selectpicker {
 }
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   display: inline-block;
-  overflow: hidden;
+  /*overflow: hidden;*/
   width: 100%;
   text-align: left;
+  color:#b2b2b2;
 }
 .bootstrap-select.btn-group .dropdown-toggle .caret {
   position: absolute;
@@ -120,16 +152,18 @@ select.selectpicker {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+  background: #ffffff;
+  overflow: hidden;
 }
 .bootstrap-select.btn-group .dropdown-menu.inner {
   position: static;
   float: none;
   border: 0;
-  padding: 0;
-  margin: 0;
   border-radius: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
+  overflow:hidden;
+  max-height: 265px !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li {
   position: relative;
