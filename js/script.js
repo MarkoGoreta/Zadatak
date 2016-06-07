@@ -90,10 +90,13 @@ function check(increment) {
 
 //******************************  FORM RESET FUNCTION  ******************************//
 
+var wantWhen = $('#wantWhen');
 function resetForm() {
   $('.msform')[0].reset();
   increment = 0;
   selectBox.selectpicker('refresh');
+  wantWhen.selectpicker('refresh');
+
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
   setTimeout(function () {
     tooltip1.tooltip('enable').tooltip('show');
