@@ -93,11 +93,13 @@ function check(increment) {
 function resetForm() {
   $('.msform')[0].reset();
   increment = 0;
+  selectBox.selectpicker('refresh');
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
   setTimeout(function () {
     tooltip1.tooltip('enable').tooltip('show');
   }, 1000);
   buttonCat.addClass('buttonCategory');
+
 }
 
 //******************************  FORM EMAIL AND USERNAME VALIDATION  ******************************//
@@ -231,7 +233,7 @@ function removeEmailError() {
   email.css('border', '');
 }
 
-function removeInvalidEmailError(){
+function removeInvalidEmailError() {
   $('#emailInvalidError').fadeOut(700, function () {
     $(this).remove();
   });
@@ -241,7 +243,7 @@ function removeInvalidEmailError(){
   email.css('border', '');
 }
 
-function removeInvalidEmailErrorWithEmpty(){
+function removeInvalidEmailErrorWithEmpty() {
   $('#emailInvalidError').remove();
   $('#breakInvalidEmail').remove();
 }
@@ -328,9 +330,22 @@ catBul3.click(function () {
 
 //******************************  FORM - PREVENT DEFAULT  ******************************//
 
-$('form').click(function (event) {
-    event.preventDefault();
+$('form').submit(function (event) {
+  event.preventDefault();
+
+  $.ajax({
+    type: "POST",
+    url: "test.php",
+    data: $('form').serialize(),
+    success: function () {
+      alert("poslano");
+    }
+  });
+  return false;
+
 });
+
+//******************************  TESTIMONIALS - Z index  ******************************//
 
 var imgCont1 = $('.imageContainer1');
 var imgCont2 = $('.imageContainer2');
@@ -524,10 +539,12 @@ var makeRef = $('#makeRef');
 var modelRef = $('#modelRef');
 
 var buttonCat = $('.buttonCategory');
+var spinner = $('.spinner');
 
 selectBox.on('change', function () {
   if ($('option[value="cars"]').is(':selected')) {
 
+    spinner.css('visibility', 'visible');
     $.getJSON("cars.json", function (data) {
       cars = data;
       keys = arrayOfKeys(cars);
@@ -554,6 +571,9 @@ selectBox.on('change', function () {
       $('.selectpicker').selectpicker({
         size: 11
       }).selectpicker('refresh');
+
+      spinner.css('visibility', 'hidden');
+
       carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
       buttonCat.addClass('buttonAnimDown');
 
@@ -587,11 +607,11 @@ function capitalizeAndFillYear(yearVar) {
   yearRef
     .append()
     .attr("title", year)
-    //.append($("<option selected disabled>")
-    //  .attr("value", year)
-    //  .text(year))
-    //.append(year)
-    //.append("</option>");
+  //.append($("<option selected disabled>")
+  //  .attr("value", year)
+  //  .text(year))
+  //.append(year)
+  //.append("</option>");
 }
 
 function capitalizeAndFillMake(makeVar) {
