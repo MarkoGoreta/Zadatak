@@ -2814,7 +2814,7 @@ input[type="button"].btn-block {
 /* OVO */
 .dropdown-toggle::after {
   display: inline-block;
-  margin-left: -1rem;
+  /*margin-left: -1rem;*/
   vertical-align: middle;
   content: "";
   border-top: .4em solid;
@@ -2894,36 +2894,40 @@ input[type="button"].btn-block {
 
 /* OVO */
 .dropdown-menu > li > a {
-  margin: 15px 10px 5px 20px;
+  margin: 10px 0 15px 20px;
   display: block;
   padding: 2px 20px;
   clear: both;
-  font-weight: normal;
-  white-space: nowrap;
-  outline: none;
-  width: 62px;
-  height: 26px;
+  /*white-space: nowrap;*/
+  /*outline: none;*/
+  /*width: 62px;*/
+  /*height: 26px;*/
   object-fit: contain;
   font-family: GothamPro;
   font-size: 18px;
-  line-height: 1.4;
-  color:#b2b2b2;
+  line-height: 25px;
+  color: rgba(0,0,0,0.4);
   background: white url("../../images/not-active.png") no-repeat left !important;
 }
 /* OVO */
 .dropdown-menu > li:first-child {
-  margin-top:15px;
+  margin-top:10px;
 }
  /*OVO */
 .dropdown-menu > li:last-child {
-  margin-bottom:15px;
+  /*margin-bottom:25px;*/
 }
 
 /* OVO */
+.dropdown-menu > li.selected > a {
+  outline: none;
+  background: white url("../../images/active.png") no-repeat left !important;
+}
+
 .dropdown-menu > li > a:hover
 {
   outline: none;
-  background: white url("../../images/active.png") no-repeat left !important;
+  font-family: GothamPro-Bold;
 }
 
 .dropdown-menu > li > a:focus{

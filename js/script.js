@@ -15,25 +15,19 @@ var tooltip2 = $('#tooltip2');
 
 $(function ($) {
   //hide and disable tooltip on mouseclick
-  tooltip1.tooltip().tooltip('show');
+  tooltip1.tooltip({trigger: "manual"}).tooltip('show');
   $('html').click(function () {
     tooltip1.tooltip('disable').tooltip('hide');
   });
-
-  $('#inputQuestion').hover(function () {
-      tooltip1.tooltip('disable').tooltip('hide');
-      tooltip2.tooltip('hide');
-    }
-  );
 });
 
 //******************************  NEXT BUTTON CLICK  ******************************//
 
 var current_fs, next_fs, previous_fs;
 var increment = 0;
-
+var inputQuestion =$('#inputQuestion');
 $(".next, .submit").click(function () {
-  if ($('#inputQuestion').val().length !== 0) {
+  if (inputQuestion.val().length !== 0) {
     increment++;
     catBulColor();
     check(increment);
@@ -45,7 +39,16 @@ $(".next, .submit").click(function () {
     current_fs.hide();
   }
   else {
-    tooltip2.tooltip('enable').tooltip('show').tooltip('disable');
+    tooltip2.tooltip({trigger: "manual"}).tooltip('show').tooltip('disable');
+  }
+});
+
+inputQuestion.keyup(function () {
+  if (!this.value) {
+    tooltip2.tooltip('enable').tooltip('show');
+  }
+  else{
+    tooltip2.tooltip('enable').tooltip('hide');
   }
 });
 
@@ -537,6 +540,28 @@ function removeDuplicateMakes() {
   });
 }
 
+function removeDuplicateModel() {
+  var usedNames = {};
+  $("#modelRef > option").each(function () {
+    if (usedNames[this.text]) {
+      $(this).remove();
+    } else {
+      usedNames[this.text] = this.value;
+    }
+  });
+}
+
+function removeDuplicateYears() {
+  var usedNames = {};
+  $("#yearRef > option").each(function () {
+    if (usedNames[this.text]) {
+      $(this).remove();
+    } else {
+      usedNames[this.text] = this.value;
+    }
+  });
+}
+
 var yearRef = $('#yearRef');
 var makeRef = $('#makeRef');
 var modelRef = $('#modelRef');
@@ -545,9 +570,10 @@ var buttonCat = $('.buttonCategory');
 var spinner = $('.spinner');
 
 selectBox.on('change', function () {
-  if ($('option[value="cars"]').is(':selected')) {
 
-    spinner.css('visibility', 'visible');
+  if ($('option[value="Cars"]').is(':selected')) {
+
+    //spinner.css('visibility', 'visible');
     $.getJSON("cars.json", function (data) {
       cars = data;
       keys = arrayOfKeys(cars);
@@ -555,33 +581,33 @@ selectBox.on('change', function () {
       var model = arrayOfModel(cars);
       var make = arrayOfMake(cars);
 
-      yearVar = keys[0];
-      makeVar = keys[1];
-      modelVar = keys[2];
+      //yearVar = keys[0];
+      //makeVar = keys[1];
+      //modelVar = keys[2];
 
-      capitalizeAndFillYear(yearVar);
-      capitalizeAndFillMake(makeVar);
-      capitalizeAndFillModel(modelVar);
+      //capitalizeAndFillYear(yearVar);
+      //capitalizeAndFillMake(makeVar);
+      //capitalizeAndFillModel(modelVar);
 
-      showYears(years);
+      //showYears(years);
       showMakes(make);
-      showModels(model);
+      //showModels(model);
       removeDuplicateMakes();
 
-      yearRef.addClass('selectpicker');
-      makeRef.addClass('selectpicker');
-      modelRef.addClass('selectpicker');
+      //yearRef.addClass('selectpicker');
+      //makeRef.addClass('selectpicker');
+      //modelRef.addClass('selectpicker');
       $('.selectpicker').selectpicker({
         size: 11
       }).selectpicker('refresh');
 
-      spinner.css('visibility', 'hidden');
+      //spinner.css('visibility', 'hidden');
 
       carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
       buttonCat.addClass('buttonAnimDown');
 
       setTimeout(function () {
-        carsDrop.removeClass('animated fadeInDown')
+        carsDrop.removeClass('animated fadeInDown');
         buttonCat.removeClass('buttonCategory').removeClass('buttonAnimDown');
       }, 1000);
       //printCars()
@@ -597,6 +623,7 @@ selectBox.on('change', function () {
 
 });
 
+
 //******************************  Capitalize first letter of a string  ******************************//
 
 String.prototype.capitalizeFirstLetter = function () {
@@ -609,7 +636,7 @@ function capitalizeAndFillYear(yearVar) {
 
   yearRef
     .append()
-    .attr("title", year)
+    .attr("title", year);
   //.append($("<option selected disabled>")
   //  .attr("value", year)
   //  .text(year))
@@ -622,7 +649,7 @@ function capitalizeAndFillMake(makeVar) {
 
   makeRef
     .append()
-    .attr("title", make)
+    .attr("title", make);
 }
 
 function capitalizeAndFillModel(modelVar) {
@@ -630,90 +657,133 @@ function capitalizeAndFillModel(modelVar) {
 
   modelRef
     .append()
-    .attr("title", model)
+    .attr("title", model);
 }
 
-yearRef.change(function () {
-
-  var currentYear = $('#yearRef option:selected').text();
-  var models = filterModelsOnYear(currentYear);
-  var makes = filterMakesOnYear(currentYear);
-
-  yearRef.removeClass('selectpicker');
-  makeRef.removeClass('selectpicker');
-  modelRef.removeClass('selectpicker');
-
-  makeRef.find('option')
-    .remove();
-
-  modelRef.find('option')
-    .remove();
-
-  capitalizeAndFillMake(makeVar);
-  capitalizeAndFillModel(modelVar);
-
-  showMakes(makes);
-  removeDuplicateMakes();
-  showModels(models);
-
-  yearRef.addClass('selectpicker');
-  makeRef.addClass('selectpicker');
-  modelRef.addClass('selectpicker');
-
-  $('.selectpicker').selectpicker('refresh');
-});
+//yearRef.change(function () {
+//
+//  var currentYear = $('#yearRef option:selected').text();
+//  var models = filterModelsOnYear(currentYear);
+//  var makes = filterMakesOnYear(currentYear);
+//
+//  yearRef.removeClass('selectpicker');
+//  makeRef.removeClass('selectpicker');
+//  modelRef.removeClass('selectpicker');
+//
+//  makeRef.find('option')
+//    .remove();
+//
+//  modelRef.find('option')
+//    .remove();
+//
+//
+//  capitalizeAndFillMake(makeVar);
+//  capitalizeAndFillModel(modelVar);
+//
+//  showMakes(makes);
+//  removeDuplicateMakes();
+//  showModels(models);
+//
+//  yearRef.addClass('selectpicker');
+//  makeRef.addClass('selectpicker');
+//  modelRef.addClass('selectpicker');
+//
+//  $('.selectpicker').selectpicker('refresh');
+//});
 
 makeRef.change(function () {
 
-  var currentYear = $('#yearRef option:selected').text();
+  //var currentYear = $('#yearRef option:selected').text();
   var currentMake = $('#makeRef option:selected').text();
-  var models = filterModelOnMakesAndYear(currentYear, currentMake);
-
-  yearRef.removeClass('selectpicker');
-  makeRef.removeClass('selectpicker');
-  modelRef.removeClass('selectpicker');
+  var models = filterModelOnMakes(currentMake);
+  var years = filterModelOnYears(currentMake);
+  //yearRef.removeClass('selectpicker');
+  //makeRef.removeClass('selectpicker');
+  //modelRef.removeClass('selectpicker');
 
   modelRef.find('option')
     .remove();
 
-  capitalizeAndFillModel(modelVar);
-  showModels(models);
+  yearRef.find('option')
+    .remove();
 
-  yearRef.addClass('selectpicker');
-  makeRef.addClass('selectpicker');
-  modelRef.addClass('selectpicker');
+  //capitalizeAndFillModel(modelVar);
+  showModels(models);
+  showYears(years);
+  removeDuplicateModel();
+  removeDuplicateYears();
+
+  //yearRef.addClass('selectpicker');
+  //makeRef.addClass('selectpicker');
+  //modelRef.addClass('selectpicker');
 
   $('.selectpicker').selectpicker('refresh');
 });
 
-function filterModelsOnYear(year) {
+
+modelRef.change(function () {
+  var currentMake = $('#makeRef option:selected').text();
+  var currentModel = $('#modelRef option:selected').text();
+  var years = filterYearOnMakeAndModel(currentMake, currentModel);
+
+  yearRef.find('option')
+    .remove();
+
+  showYears(years);
+
+  removeDuplicateYears();
+
+  $('.selectpicker').selectpicker('refresh');
+});
+
+//function filterModelsOnYear(year) {
+//  var filteredModels = [];
+//  cars.forEach(function (car) {
+//    if (car.year === year) {
+//      filteredModels.push(car.model);
+//    }
+//  });
+//  return filteredModels;
+//}
+
+//function filterMakesOnYear(year) {
+//  var filteredMakes = [];
+//  cars.forEach(function (car) {
+//    if (car.year === year) {
+//      filteredMakes.push(car.make);
+//    }
+//  });
+//  return filteredMakes;
+//}
+
+function filterModelOnMakes(make) {
   var filteredModels = [];
   cars.forEach(function (car) {
-    if (car.year === year) {
+    if (car.make === make) {
       filteredModels.push(car.model);
     }
   });
   return filteredModels;
 }
 
-function filterMakesOnYear(year) {
-  var filteredMakes = [];
+function filterModelOnYears(make) {
+  var filteredYears = [];
   cars.forEach(function (car) {
-    if (car.year === year) {
-      filteredMakes.push(car.make);
+    if (car.make === make) {
+      filteredYears.push(car.year);
     }
   });
-  return filteredMakes;
+  return filteredYears;
 }
 
-function filterModelOnMakesAndYear(year, make) {
-  var filteredModels = [];
+function filterYearOnMakeAndModel(make, model) {
+  var filteredYears = [];
   cars.forEach(function (car) {
-    if (car.year === year && car.make === make) {
-      filteredModels.push(car.model);
+    if (car.make === make && car.model === model) {
+      filteredYears.push(car.year);
     }
   });
-  return filteredModels;
+  return filteredYears;
 }
 
-selPick.selectpicker("refresh");
+//selPick.selectpicker("refresh");

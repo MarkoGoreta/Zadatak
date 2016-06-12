@@ -23,7 +23,7 @@ select.selectpicker {
   font-size: 18px;
   line-height: 1.4;
   color: #b2b2b2;
-  padding-left:20px;
+  padding:13px 18px;
   position: relative;
 }
 
@@ -132,8 +132,8 @@ select.selectpicker {
 }
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   display: inline-block;
-  /*overflow: hidden;*/
-  width: 100%;
+  overflow: hidden;
+  width: 90%;
   text-align: left;
   color:#b2b2b2;
 }

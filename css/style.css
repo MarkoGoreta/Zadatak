@@ -4,12 +4,24 @@
   padding: 0;
 }
 
-body{
-overflow-x:hidden;
+body {
+  overflow-x: hidden;
 }
 
 html {
   height: 100%;
+}
+
+#firstSet {
+  padding-top: 160px;
+}
+
+.middleFieldsets {
+  padding-top: 100px;
+}
+
+#fifthSet {
+  padding-top: 200px;
 }
 
 .container {
@@ -20,25 +32,27 @@ html {
   background: no-repeat center center fixed url(../images/background.png);
   -webkit-background-size: cover;
   background-size: cover;
-  height: 100vh;
+  height: 800px;
+  padding: 0;
 }
 
 /*mutistepform styles*/
 .msform {
-  width: 80em;
+  width: 720px;
   text-align: center;
   position: relative;
+  margin: 0 auto;
 }
 
 .msform fieldset {
   background-color: transparent;
-  width: 770px;
+  width: 720px;
   height: 587px;
-  padding: 20px 30px;
-  margin: auto;
+  /*padding: 20px 30px;*/
+  margin: 0 auto;
   /*fieldset one over another, important!!*/
-  position: absolute;
-  left: 5%;
+  position: relative;
+  /*left: 5%;*/
 }
 
 /*Hide all except first fieldset*/
@@ -62,16 +76,16 @@ html {
   line-height: 1.4;
   margin-bottom: 20px;
   padding-left: 20px;
-  opacity:0.97;
+  opacity: 0.97;
 }
 
-.msform .inputDropdown{
+.msform .inputDropdown {
   z-index: 3000;
-  right:20px;
+  right: 20px;
 }
 
 #inputQuestion {
-  width: 770px;
+  width: 720px;
   height: 60px;
 }
 
@@ -108,11 +122,12 @@ html {
   text-align: center;
 }
 
-.msform .sent, .msform .next, .msform .formValidation{
+.msform .sent, .msform .next, .msform .formValidation {
   background: rgb(135, 201, 63);
   position: relative;
 }
-.msform .previous{
+
+.msform .previous {
   position: relative;
   right: 22px;
   border: solid 2px #ffffff;
@@ -123,16 +138,17 @@ html {
   left: 22px;
 }
 
-.buttonCategory{
-  bottom:60px;
+.buttonCategory {
+  bottom: 60px;
 }
 
-.middleFieldsets{
-  top:-100px;
+.middleFieldsets {
+  /*top:-100px;*/
 }
 
 .navbar {
-  margin-top: -50px;
+  height: 80px;
+  padding-top: 20px;
 }
 
 .navbar #navbarLeft {
@@ -178,28 +194,31 @@ html {
 .titleText {
   width: 600px;
   height: 159px;
-  font-family: GothamPro;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
-  margin-top: 233px;
-  font-size: 51px;
-  line-height: 1.0;
+  /*position: relative;*/
+  /*margin-top: 233px;*/
+  /*font-size: 51px;*/
+  /*line-height: 1.0;*/
   margin-bottom: 35px;
 }
 
 .titleText h1 {
   font-size: 51px;
-  font-weight: lighter;
+  font-family: GothamPro-Light;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .titleText span h1 {
   width: 841px;
   height: 106px;
+  font-size: 51px;
   font-family: GothamPro-Light;
-  line-height: 1.0;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
   margin-left: -130px;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
 
 .titleText h1 span {
@@ -376,8 +395,8 @@ a .catBullet:hover {
   cursor: pointer;
 }
 
-#email{
-  bottom:30px;
+#email {
+  bottom: 30px;
 }
 
 .msform #thirdSet p {
@@ -385,7 +404,7 @@ a .catBullet:hover {
   position: relative;
   text-align: left;
   margin: -15px 0 -10px 0;
-  left:175px;
+  left: 175px;
   animation-name: downP;
   animation-duration: 1s;
   font-size: 14px;
@@ -399,7 +418,7 @@ a .catBullet:hover {
   -moz-border-radius: 6px;
   border-radius: 6px;
   background-color: #ffffff;
-  opacity:0.3;
+  opacity: 0.3;
   margin-bottom: 20px;
   object-fit: contain;
 }
@@ -466,22 +485,36 @@ a .catBullet:hover {
   padding: 0;
 }
 
+select {
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+
+.categoryBulletsSecond {
+  padding-top: 20px;
+}
+
+.categoryBulletsThird{
+  padding-top: 10px;
+}
 /*#selectBox{*/
-  /*width: 400px !important;*/
-  /*height: 50px !important;*/
-  /*opacity: 0.97;*/
-  /*background-color: #ffffff;*/
-  /*border-style: none;*/
-  /*border-radius: 3px;*/
-  /*box-sizing: border-box;*/
-  /*color: #2C3E50;*/
-  /*outline: none;*/
-  /*object-fit: contain;*/
-  /*font-family: GothamPro;*/
-  /*font-size: 18px;*/
-  /*line-height: 1.4;*/
-  /*margin-bottom: 20px;*/
-  /*padding-left: 20px;*/
+/*width: 400px !important;*/
+/*height: 50px !important;*/
+/*opacity: 0.97;*/
+/*background-color: #ffffff;*/
+/*border-style: none;*/
+/*border-radius: 3px;*/
+/*box-sizing: border-box;*/
+/*color: #2C3E50;*/
+/*outline: none;*/
+/*object-fit: contain;*/
+/*font-family: GothamPro;*/
+/*font-size: 18px;*/
+/*line-height: 1.4;*/
+/*margin-bottom: 20px;*/
+/*padding-left: 20px;*/
 /*}*/
 
 @media (max-width: 767px) {
@@ -504,51 +537,78 @@ a .catBullet:hover {
     margin-left: 0;
   }
 }
+
 @-webkit-keyframes downButtons {
-0%   {bottom:60px;}
-100% {bottom:0;}
+  0% {
+    bottom: 60px;
+  }
+  100% {
+    bottom: 0;
+  }
 }
 
 @keyframes downButtons {
-  0%   {bottom:60px;}
-  100% {bottom:0;}
+  0% {
+    bottom: 60px;
+  }
+  100% {
+    bottom: 0;
+  }
 }
 
 @-webkit-keyframes upButtons {
-  0%   {bottom:0;}
-  100% {bottom:60px;}
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 60px;
+  }
 }
 
 @keyframes upButtons {
-  0%   {bottom:0;}
-  100% {bottom:60px;}
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 60px;
+  }
 }
 
 @-webkit-keyframes downP {
-  0%   {top:-10px; opacity:0}
-  100% {top:0; opacity:1}
+  0% {
+    top: -10px;
+    opacity: 0
+  }
+  100% {
+    top: 0;
+    opacity: 1
+  }
 }
 
 @keyframes downP {
-  0%   {top:-10px; opacity:0}
-  100% {top:0; opacity:1}
+  0% {
+    top: -10px;
+    opacity: 0
+  }
+  100% {
+    top: 0;
+    opacity: 1
+  }
 }
 
-
-
-.buttonAnimUp{
+.buttonAnimUp {
   -webkit-animation-name: upButtons; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
   animation-name: upButtons;
   animation-duration: 1s;
 }
 
-.buttonAnimDown{
+.buttonAnimDown {
   -webkit-animation-name: downButtons; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
   animation-name: downButtons;
   animation-duration: 1s;
-  bottom:0;
+  bottom: 0;
 }
 
 /* OVO */
@@ -556,51 +616,51 @@ a .catBullet:hover {
   position: relative;
 }
 
-.spinner {
-  margin: 200px auto;
-  right: 350px;
-  top: 335px;
-  width: 70px;
-  text-align: center;
-  position: absolute;
-  visibility: hidden;
-}
+/*.spinner {*/
+/*margin: 200px auto;*/
+/*right: 350px;*/
+/*top: 335px;*/
+/*width: 70px;*/
+/*text-align: center;*/
+/*position: absolute;*/
+/*visibility: hidden;*/
+/*}*/
 
-.spinner > div {
-  width: 18px;
-  height: 18px;
-  background-color: #ffffff;
+/*.spinner > div {*/
+/*width: 18px;*/
+/*height: 18px;*/
+/*background-color: #ffffff;*/
 
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
+/*border-radius: 100%;*/
+/*display: inline-block;*/
+/*-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;*/
+/*animation: sk-bouncedelay 1.4s infinite ease-in-out both;*/
+/*}*/
 
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
+/*.spinner .bounce1 {*/
+/*-webkit-animation-delay: -0.32s;*/
+/*animation-delay: -0.32s;*/
+/*}*/
 
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
+/*.spinner .bounce2 {*/
+/*-webkit-animation-delay: -0.16s;*/
+/*animation-delay: -0.16s;*/
+/*}*/
 
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
-}
+/*@-webkit-keyframes sk-bouncedelay {*/
+/*0%, 80%, 100% { -webkit-transform: scale(0) }*/
+/*40% { -webkit-transform: scale(1.0) }*/
+/*}*/
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 40% {
-      -webkit-transform: scale(1.0);
-      transform: scale(1.0);
-    }
-}
+/*@keyframes sk-bouncedelay {*/
+/*0%, 80%, 100% {*/
+/*-webkit-transform: scale(0);*/
+/*transform: scale(0);*/
+/*} 40% {*/
+/*-webkit-transform: scale(1.0);*/
+/*transform: scale(1.0);*/
+/*}*/
+/*}*/
 
 @font-face {
   font-family: 'GothamPro';
@@ -638,3 +698,4 @@ a .catBullet:hover {
   url('../fonts/GothamPro-Bold/GothamPro-Bold.svg#GothamPro-Bold') format('svg');
 }
 
+/*media q - 320  480  767  768 992 1200 */
