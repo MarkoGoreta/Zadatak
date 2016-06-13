@@ -399,16 +399,50 @@ a .catBullet:hover {
   bottom: 30px;
 }
 
-.msform #thirdSet p {
-  color: #ffffff;
+/*.msform #thirdSet p {*/
+/*font-family: GothamPro;*/
+/*color: #ffffff;*/
+/*left: 180px;*/
+/*animation-name: downP;*/
+/*animation-duration: 1s;*/
+/*font-size: 10px;*/
+/*text-align: left;*/
+  /*!*position: relative;*!*/
+  /*margin: -10px 0 -10px 0;*/
+/*}*/
+
+.msform #pomocniErrorUser{
   position: relative;
-  text-align: left;
-  margin: -15px 0 -10px 0;
-  left: 175px;
-  animation-name: downP;
-  animation-duration: 1s;
-  font-size: 14px;
+}
+
+.msform #pomocniErrorUser p{
   font-family: GothamPro;
+  position: absolute;
+  color: #ffffff;
+  left: 180px;
+  /*animation-name: downP;*/
+  /*animation-duration: 1s;*/
+  font-size: 10px;
+  text-align: left;
+  top: 74px;
+  visibility: hidden;
+}
+
+.msform #pomocniErrorEmail{
+  position: relative;
+}
+
+.msform #pomocniErrorEmail p{
+  font-family: GothamPro;
+  position: absolute;
+  color: #ffffff;
+  left: 180px;
+  /*animation-name: downP;*/
+  /*animation-duration: 1s;*/
+  font-size: 10px;
+  text-align: left;
+  top: 50px;
+  visibility: hidden;
 }
 
 .catBullet {

@@ -112,6 +112,8 @@ function resetForm() {
 
 var username = $('#username');
 var email = $('#email');
+var userError = $('#usernameError');
+var emailError = $('#emailError');
 
 var checkIfUsernameExists = false;
 var checkIfEmailExists = false;
@@ -205,53 +207,63 @@ function checkEmail() {
 }
 
 function showUsernameError() {
-  $("<br id='breakUsername'><p class='errorMessage' id='usernameError'>Username is required.</p>").insertAfter("#username");
+  //$("<br id='breakUsername'><p class='errorMessage' id='usernameError'>Username is required.</p>").insertAfter("#username");
   username.css('border', '2px solid red');
+  userError.text('This field is required.');
+  userError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
 }
 
 function showEmailError() {
-  $("<br id='breakEmail'><p class='errorMessage' id='emailError' >Email is required.</p>").insertAfter("#email");
+  //$("<br id='breakEmail'><p class='errorMessage' id='emailError' >Email is required.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
+  emailError.text('Email is required.');
+  emailError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
 }
 
 function showEmailNotValid() {
-  $("<br id='breakInvalidEmail'><p class='errorMessage' id='emailInvalidError' >Enter valid email.</p>").insertAfter("#email");
+  //$("<br id='breakInvalidEmail'><p class='errorMessage' id='emailInvalidError' >Enter valid email.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
+  emailError.text('Enter valid email address.');
+  emailError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
 }
 
 function removeUsernameError() {
-  $('#usernameError').fadeOut(700, function () {
-    $(this).remove();
+  userError.fadeOut(700, function () {
+    userError.css('visibility','hidden');
   });
-  $('#breakUsername').fadeOut(700, function () {
-    $(this).remove();
-  });
+  //$('#breakUsername').fadeOut(700, function () {
+  //  $(this).remove();
+  //});
   username.css('border', '');
+  userError.removeClass('animated fadeInUp');
+
 }
 
 function removeEmailError() {
-  $('#emailError').fadeOut(700, function () {
-    $(this).remove();
+  emailError.fadeOut(700, function () {
+    emailError.css('visibility','hidden');
   });
-  $('#breakEmail').fadeOut(700, function () {
-    $(this).remove();
-  });
+  //$('#breakEmail').fadeOut(700, function () {
+  //  $(this).remove();
+  //});
   email.css('border', '');
+  emailError.removeClass('animated fadeInUp');
 }
 
 function removeInvalidEmailError() {
-  $('#emailInvalidError').fadeOut(700, function () {
-    $(this).remove();
+  emailError.fadeOut(700, function () {
+    emailError.css('visibility','hidden');
   });
-  $('#breakInvalidEmail').fadeOut(700, function () {
-    $(this).remove();
-  });
+  //$('#breakInvalidEmail').fadeOut(700, function () {
+  //  $(this).remove();
+  //});
   email.css('border', '');
+  emailError.removeClass('animated fadeInUp');
 }
 
 function removeInvalidEmailErrorWithEmpty() {
-  $('#emailInvalidError').remove();
-  $('#breakInvalidEmail').remove();
+  //userError.css('visibility','hidden')
+  //emailError.css('visibility','hidden')
 }
 
 //******************************  FORM BULLET SCROLL  ******************************//
