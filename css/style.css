@@ -696,6 +696,81 @@ select {
 /*}*/
 /*}*/
 
+/*EXPLORE*/
+.explore {
+  background: white;
+  text-align: center;
+
+}
+
+.explore h1 {
+  opacity: 0.6;
+  font-family: GothamPro;
+  font-size: 40px;
+  /*font-weight: 300;*/
+  line-height: 1.25;
+  color: #000000;
+  margin: 82px 0 0 0;
+}
+
+.explore h3 {
+  opacity: 0.15;
+  font-family: GothamPro-Bold;
+  font-size: 14px;
+  /*font-weight: 500;*/
+  line-height: 1.29;
+  color: #000000;
+  margin-bottom:60px;
+}
+
+.explore ul .exploreNavigation{
+  list-style: none;
+}
+
+.explore .exploreNavigation > li {
+  display: inline-block;
+  padding-right:50px;
+  opacity: 0.2;
+  font-family: GothamPro-Bold;
+  font-size: 14px;
+  /*font-weight: bold;*/
+  color: #000000;
+  padding-bottom:20px;
+}
+
+.explore .exploreNavigation li a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.explore .exploreNavigation > li:hover{
+  opacity: 0.8;
+}
+
+#activeInterior{
+  opacity:0.8;
+}
+
+.exploreSlider {
+  -webkit-background-size:cover;
+  background-size:cover;
+  /*height:800px;*/
+}
+
+/*.imageSlider{*/
+  /*height:800px;*/
+/*}*/
+
+/*.imageSlider img{*/
+  /*position: absolute;*/
+  /*height:800px;*/
+  /*margin:0 !important;*/
+  /*padding:0 !important;*/
+  /*width:100vw;*/
+  /*background-size:cover;*/
+  /*right:0;*/
+/*}*/
+
 @font-face {
   font-family: 'GothamPro';
   src: url('../fonts/GothamPro/GothamPro.eot?') format('eot'),

@@ -798,4 +798,39 @@ function filterYearOnMakeAndModel(make, model) {
   return filteredYears;
 }
 
-//selPick.selectpicker("refresh");
+//var activeInterior = $('#activeInterior');
+//var activeFashion = $('#activeFashion');
+//var activeGadgets = $('#activeGadgets');
+//var activeCars = $('#activeCars');
+//var activeKids = $('#activeKids');
+//var activeAnything = $('#activeAnything');
+
+$('.bxslider').bxSlider({
+  pagerCustom: '#bx-pager',
+  mode: 'horizontal',
+  auto: true,
+  pause: 7000,
+  speed: 500
+  //,onSlideAfter: function(slideIndex){
+  //  switch(slideIndex){
+  //    case 0:
+  //      activeInterior.css('opacity','0.8');
+  //      break;
+  //    case 1:
+  //      activeFashion.css('opacity','0.8');
+  //      break;
+  //    case 2:
+  //      activeGadgets.css('opacity','0.8');
+  //      break;
+  //    case 3:
+  //      activeCars.css('opacity','0.8');
+  //      break;
+  //    case 4:
+  //      activeKids.css('opacity','0.8');
+  //      break;
+  //    case 5:
+  //      activeAnything.css('opacity','0.8');
+  //      break;
+  //  }
+  //}
+});
