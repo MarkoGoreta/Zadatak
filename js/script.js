@@ -16,8 +16,10 @@ var tooltip2 = $('#tooltip2');
 $(function ($) {
   //hide and disable tooltip on mouseclick
   tooltip1.tooltip({trigger: "manual"}).tooltip('show');
+  tooltip2.tooltip({trigger: "manual"}).tooltip('hide');
   $('html').click(function () {
     tooltip1.tooltip('disable').tooltip('hide');
+    tooltip2.tooltip('enable');
   });
 });
 
@@ -25,11 +27,14 @@ $(function ($) {
 
 var current_fs, next_fs, previous_fs;
 var increment = 0;
-var inputQuestion =$('#inputQuestion');
+var inputQuestion = $('#inputQuestion');
+var tooltip2Visible = false;
+
 $(".next, .submit").click(function () {
   if (inputQuestion.val().length !== 0) {
     increment++;
     catBulColor();
+    checkSize();
     check(increment);
 
     current_fs = $(this).parent();
@@ -39,23 +44,30 @@ $(".next, .submit").click(function () {
     current_fs.hide();
   }
   else {
-    tooltip2.tooltip({trigger: "manual"}).tooltip('show').tooltip('disable');
+    if (tooltip2Visible === false) {
+      tooltip2.tooltip('enable');
+      tooltip2.tooltip({trigger: "manual"}).tooltip('show').tooltip('disable');
+      tooltip2Visible = true;
+    }
   }
 });
 
 inputQuestion.keyup(function () {
   if (!this.value) {
     tooltip2.tooltip('enable').tooltip('show');
+    tooltip2Visible = true;
   }
-  else{
+  else {
     tooltip2.tooltip('enable').tooltip('hide');
+    tooltip2Visible = false;
   }
 });
 
 //******************************  BACK BUTTON CLICK  ******************************//
 
-$(".previous").click(function () {
+$(".previous, .previousMobile").click(function () {
   increment--;
+  checkSize();
   catBulColor();
 
   current_fs = $(this).parent();
@@ -72,7 +84,6 @@ $('.sent').click(function () {
   $('#fifthSet').hide();
   $('#firstSet').show().addClass('animated fadeInRight');
   clearTimeout(timerSubmit);
-
   resetForm();
 });
 
@@ -99,14 +110,25 @@ function resetForm() {
   increment = 0;
   selectBox.selectpicker('refresh');
   wantWhen.selectpicker('refresh');
-
+  tooltip2Visible = false;
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
   setTimeout(function () {
     tooltip1.tooltip('enable').tooltip('show');
+    tooltip2.tooltip('disable');
   }, 1000);
   buttonCat.addClass('buttonCategory');
-
 }
+
+//******************************  Prevent enter submit  ******************************//
+//
+$(document).ready(function () {
+  $(window).keydown(function (event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
 
 //******************************  FORM EMAIL AND USERNAME VALIDATION  ******************************//
 
@@ -210,26 +232,26 @@ function showUsernameError() {
   //$("<br id='breakUsername'><p class='errorMessage' id='usernameError'>Username is required.</p>").insertAfter("#username");
   username.css('border', '2px solid red');
   userError.text('This field is required.');
-  userError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
+  userError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
 }
 
 function showEmailError() {
   //$("<br id='breakEmail'><p class='errorMessage' id='emailError' >Email is required.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
   emailError.text('Email is required.');
-  emailError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
+  emailError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
 }
 
 function showEmailNotValid() {
   //$("<br id='breakInvalidEmail'><p class='errorMessage' id='emailInvalidError' >Enter valid email.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
   emailError.text('Enter valid email address.');
-  emailError.css('visibility','visible').css('display','inherit').addClass('animated fadeInUp');
+  emailError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
 }
 
 function removeUsernameError() {
   userError.fadeOut(700, function () {
-    userError.css('visibility','hidden');
+    userError.css('visibility', 'hidden');
   });
   //$('#breakUsername').fadeOut(700, function () {
   //  $(this).remove();
@@ -241,7 +263,7 @@ function removeUsernameError() {
 
 function removeEmailError() {
   emailError.fadeOut(700, function () {
-    emailError.css('visibility','hidden');
+    emailError.css('visibility', 'hidden');
   });
   //$('#breakEmail').fadeOut(700, function () {
   //  $(this).remove();
@@ -252,7 +274,7 @@ function removeEmailError() {
 
 function removeInvalidEmailError() {
   emailError.fadeOut(700, function () {
-    emailError.css('visibility','hidden');
+    emailError.css('visibility', 'hidden');
   });
   //$('#breakInvalidEmail').fadeOut(700, function () {
   //  $(this).remove();
@@ -391,12 +413,17 @@ $(function () {
 var intervalIndex = 1;
 var slierDiv = $('.slider > div');
 var bullet = $('.bullet');
+var firstImgContainer = $('#firstImgContainer');
+var secondImgContainer = $('#secondImgContainer');
+var thirdImgContainer = $('#thirdImgContainer');
+var fourthImgContainer = $('#fourthImgContainer');
+var fifthImgContainer = $('#fifthImgContainer');
 
 function firstSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
   bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul1').css({'background-color': 'black', 'opacity': '0.5'});
-  $('#firstImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  firstImgContainer.css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 1;
   window.clearTimeout(timeout);
   timeout = window.setInterval(function () {
@@ -408,7 +435,7 @@ function secondSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
   bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul2').css({'background-color': 'black', 'opacity': '0.5'});
-  $('#secondImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  secondImgContainer.css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 2;
   window.clearTimeout(timeout);
   timeout = window.setInterval(function () {
@@ -420,7 +447,7 @@ function thirdSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
   bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul3').css({'background-color': 'black', 'opacity': '0.5'});
-  $('#thirdImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  thirdImgContainer.css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 3;
   window.clearTimeout(timeout);
   timeout = window.setInterval(function () {
@@ -432,7 +459,7 @@ function fourthSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
   bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul4').css({'background-color': 'black', 'opacity': '0.5'});
-  $('#fourthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  fourthImgContainer.css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 4;
   window.clearTimeout(timeout);
   timeout = window.setInterval(function () {
@@ -444,7 +471,7 @@ function fifthSlide() {
   slierDiv.css('visibility', 'hidden').removeClass('animated fadeInRight');
   bullet.css({'background-color': '#d8d8d8', 'opacity': '1'});
   $('.bullet#bul5').css({'background-color': 'black', 'opacity': '0.5'});
-  $('#fifthImgContainer').css('visibility', 'visible').addClass('animated fadeInRight');
+  fifthImgContainer.css('visibility', 'visible').addClass('animated fadeInRight');
   intervalIndex = 5;
   window.clearTimeout(timeout);
   timeout = window.setInterval(function () {
@@ -579,7 +606,7 @@ var makeRef = $('#makeRef');
 var modelRef = $('#modelRef');
 
 var buttonCat = $('.buttonCategory');
-var spinner = $('.spinner');
+//var spinner = $('.spinner');
 
 selectBox.on('change', function () {
 
@@ -798,39 +825,137 @@ function filterYearOnMakeAndModel(make, model) {
   return filteredYears;
 }
 
+//******************************  BxSLIDER  ******************************//
+
 //var activeInterior = $('#activeInterior');
 //var activeFashion = $('#activeFashion');
 //var activeGadgets = $('#activeGadgets');
 //var activeCars = $('#activeCars');
 //var activeKids = $('#activeKids');
 //var activeAnything = $('#activeAnything');
+var slides = 0;
+var mobileTextExplore = $(".mobileTextExplore");
+var mobileImgExplore = $(".mobileImageExplore");
+var slider = $('.bxslider');
+var sliderNext = $('#slider-next');
+var sliderPrevious = $('#slider-prev');
 
-$('.bxslider').bxSlider({
+slider.bxSlider({
+  nextSelector: '#slider-next',
+  prevSelector: '#slider-prev',
+  nextText: '',
+  prevText: '',
   pagerCustom: '#bx-pager',
   mode: 'horizontal',
-  auto: true,
+  //auto: true,
   pause: 7000,
-  speed: 500
-  //,onSlideAfter: function(slideIndex){
-  //  switch(slideIndex){
-  //    case 0:
-  //      activeInterior.css('opacity','0.8');
-  //      break;
-  //    case 1:
-  //      activeFashion.css('opacity','0.8');
-  //      break;
-  //    case 2:
-  //      activeGadgets.css('opacity','0.8');
-  //      break;
-  //    case 3:
-  //      activeCars.css('opacity','0.8');
-  //      break;
-  //    case 4:
-  //      activeKids.css('opacity','0.8');
-  //      break;
-  //    case 5:
-  //      activeAnything.css('opacity','0.8');
-  //      break;
-  //  }
-  //}
+  speed: 500,
+  onSlideAfter: function () {
+    //slides++;
+    changeNameAndImg(slides);
+  }
 });
+
+sliderNext.click(function(){
+  slider.goToNextSlide();
+  slides++;
+  if(slides > 5)
+  {
+    slides = 0;
+  }
+  changeNameAndImg(slides);
+});
+
+sliderPrevious.click(function(){
+  slider.goToPrevSlide();
+  slides--;
+  if(slides === -1)
+  {
+    slides = 5;
+  }
+  changeNameAndImg(slides);
+});
+
+
+function changeNameAndImg(slides){
+  if (slides === 0) {
+    mobileTextExplore.html(" INTERIOR");
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
+    return false;
+  }
+  if (slides === 1){
+    mobileTextExplore.html(" FASHION");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
+    return false;
+  }
+
+  if (slides === 2){
+    mobileTextExplore.html(" GADGETS");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
+    return false;
+  }
+
+  if (slides === 3){
+    mobileTextExplore.html(" CARS");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
+    return false;
+  }
+
+  if (slides === 4){
+    mobileTextExplore.html(" KIDS");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
+    return false;
+  }
+
+  if (slides === 5){
+    mobileTextExplore.html(" ANYTHING");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
+    return false;
+  }
+}
+
+//******************************  MOBILE  ******************************//
+
+var logoToBack = $('#navLogo');
+var backChevron = $('.backChevronMobile');
+
+$(window).resize(function () {
+  checkSize();
+  centerImageTestimonialsTo480();
+});
+
+$(window).load(function () {
+  centerImageTestimonialsTo480();
+});
+
+//******************************  Check window size  ******************************//
+
+function checkSize() {
+  if ($(window).width() <= 480 && increment > 0) {
+    logoToBack.css('visibility', 'hidden');
+    backChevron.css('visibility', 'visible').css('display', 'inline');
+  }
+  else if ($(window).width() <= 480 && increment == 0) {
+    logoToBack.css('visibility', 'visible');
+    backChevron.css('visibility', 'hidden').css('display', 'none');
+  }
+  else {
+    logoToBack.css('visibility', 'visible');
+  }
+}
+
+//******************************  Center Testimonials Images  ******************************//
+
+function centerImageTestimonialsTo480() {
+  var windowWidth = $(window).width();
+
+  var imagesWidth = 300;
+  var centerImages = (windowWidth - imagesWidth) / 2 + 'px';
+
+  firstImgContainer.css('left', centerImages);
+  secondImgContainer.css('left', centerImages);
+  thirdImgContainer.css('left', centerImages);
+  fourthImgContainer.css('left', centerImages);
+  fifthImgContainer.css('left', centerImages);
+
+}
