@@ -852,54 +852,56 @@ slider.bxSlider({
 });
 
 
-sliderNext.click(function(){
-  if(sliderNext.data('stop')==1) return;
-  sliderNext.data('stop',1);
+sliderNext.click(function () {
+  if (sliderNext.data('stop') == 1) return;
+  sliderNext.data('stop', 1);
 
   currentSlideText = mobileTextExplore.text();
   changeNameAndImgNext(currentSlideText);
-  setTimeout(function(){
-    sliderNext.data('stop',0); }
-  , 500);
-});
-
-sliderPrevious.click(function(){
-  if(sliderPrevious.data('stop')==1) return;
-  sliderPrevious.data('stop',1);
-
-  currentSlideText = mobileTextExplore.text();
-  changeNameAndImgPrev(currentSlideText);
-  setTimeout(function(){
-      sliderPrevious.data('stop',0); }
+  setTimeout(function () {
+      sliderNext.data('stop', 0);
+    }
     , 500);
 });
 
-function changeNameAndImgNext(name){
-  if (name === "INTERIOR"){
+sliderPrevious.click(function () {
+  if (sliderPrevious.data('stop') == 1) return;
+  sliderPrevious.data('stop', 1);
+
+  currentSlideText = mobileTextExplore.text();
+  changeNameAndImgPrev(currentSlideText);
+  setTimeout(function () {
+      sliderPrevious.data('stop', 0);
+    }
+    , 500);
+});
+
+function changeNameAndImgNext(name) {
+  if (name === "INTERIOR") {
     mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
     return false;
   }
 
-  if (name === "FASHION"){
+  if (name === "FASHION") {
     mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
     return false;
   }
 
-  if (name === "GADGETS"){
+  if (name === "GADGETS") {
     mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
     return false;
   }
 
-  if (name === "CARS"){
+  if (name === "CARS") {
     mobileTextExplore.html("KIDS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
     return false;
   }
 
-  if (name === "KIDS"){
+  if (name === "KIDS") {
     mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
     return false;
@@ -911,8 +913,8 @@ function changeNameAndImgNext(name){
   }
 }
 
-function changeNameAndImgPrev(name){
-  if (name === "INTERIOR"){
+function changeNameAndImgPrev(name) {
+  if (name === "INTERIOR") {
     mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
     return false;
@@ -922,33 +924,33 @@ function changeNameAndImgPrev(name){
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
     return false;
   }
-  if (name === "KIDS"){
+  if (name === "KIDS") {
     mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
     return false;
   }
-  if (name === "CARS"){
+  if (name === "CARS") {
     mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
     return false;
   }
-  if (name === "GADGETS"){
+  if (name === "GADGETS") {
     mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
     return false;
   }
-  if (name === "FASHION"){
+  if (name === "FASHION") {
     mobileTextExplore.html("INTERIOR");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
     return false;
   }
 }
 
-function infiniteSlideLoop(){
+function infiniteSlideLoop() {
   setInterval(function () {
     slider.goToNextSlide();
     sliderNext.trigger('click');
-  },7000)
+  }, 7000)
 }
 //******************************  MOBILE  ******************************//
 
@@ -984,15 +986,24 @@ function checkSize() {
 //******************************  Center Testimonials Images  ******************************//
 
 function centerImageTestimonialsTo480() {
-  var windowWidth = $(window).width();
+  if ($(window).width() <= 480) {
+    var windowWidth = $(window).width();
 
-  var imagesWidth = 300;
-  var centerImages = (windowWidth - imagesWidth) / 2 + 'px';
+    var imagesWidth = 300;
+    var centerImages = (windowWidth - imagesWidth) / 2 + 'px';
 
-  firstImgContainer.css('left', centerImages);
-  secondImgContainer.css('left', centerImages);
-  thirdImgContainer.css('left', centerImages);
-  fourthImgContainer.css('left', centerImages);
-  fifthImgContainer.css('left', centerImages);
-
+    firstImgContainer.css('left', centerImages);
+    secondImgContainer.css('left', centerImages);
+    thirdImgContainer.css('left', centerImages);
+    fourthImgContainer.css('left', centerImages);
+    fifthImgContainer.css('left', centerImages);
+  }
+  else
+  {
+    firstImgContainer.css('left', "58%");
+    secondImgContainer.css('left', "58%");
+    thirdImgContainer.css('left', "58%");
+    fourthImgContainer.css('left', "58%");
+    fifthImgContainer.css('left', "58%");
+  }
 }
