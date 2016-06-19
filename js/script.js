@@ -827,18 +827,12 @@ function filterYearOnMakeAndModel(make, model) {
 
 //******************************  BxSLIDER  ******************************//
 
-//var activeInterior = $('#activeInterior');
-//var activeFashion = $('#activeFashion');
-//var activeGadgets = $('#activeGadgets');
-//var activeCars = $('#activeCars');
-//var activeKids = $('#activeKids');
-//var activeAnything = $('#activeAnything');
-var slides = 0;
 var mobileTextExplore = $(".mobileTextExplore");
 var mobileImgExplore = $(".mobileImageExplore");
 var slider = $('.bxslider');
 var sliderNext = $('#slider-next');
 var sliderPrevious = $('#slider-prev');
+var currentSlideText;
 
 slider.bxSlider({
   nextSelector: '#slider-next',
@@ -846,74 +840,116 @@ slider.bxSlider({
   nextText: '',
   prevText: '',
   pagerCustom: '#bx-pager',
-  mode: 'horizontal',
+  mode: 'horizontal'
   //auto: true,
-  pause: 7000,
-  speed: 500,
-  onSlideAfter: function () {
-    //slides++;
-    changeNameAndImg(slides);
-  }
+  //pause: 7000,
+  //speed: 500,
+
+  //onSlideBefore: function () {
+  //  currentSlideText = mobileTextExplore.text();
+  //  changeNameAndImgNext(currentSlideText);
+  //}
 });
 
+
 sliderNext.click(function(){
-  slider.goToNextSlide();
-  slides++;
-  if(slides > 5)
-  {
-    slides = 0;
-  }
-  changeNameAndImg(slides);
+  if(sliderNext.data('stop')==1) return;
+  sliderNext.data('stop',1);
+
+  currentSlideText = mobileTextExplore.text();
+  changeNameAndImgNext(currentSlideText);
+  setTimeout(function(){
+    sliderNext.data('stop',0); }
+  , 500);
 });
 
 sliderPrevious.click(function(){
-  slider.goToPrevSlide();
-  slides--;
-  if(slides === -1)
-  {
-    slides = 5;
-  }
-  changeNameAndImg(slides);
+  if(sliderPrevious.data('stop')==1) return;
+  sliderPrevious.data('stop',1);
+
+  currentSlideText = mobileTextExplore.text();
+  changeNameAndImgPrev(currentSlideText);
+  setTimeout(function(){
+      sliderPrevious.data('stop',0); }
+    , 500);
 });
 
-
-function changeNameAndImg(slides){
-  if (slides === 0) {
-    mobileTextExplore.html(" INTERIOR");
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
-    return false;
-  }
-  if (slides === 1){
-    mobileTextExplore.html(" FASHION");  //.addClass("animated fadeIn")
+function changeNameAndImgNext(name){
+  if (name === "INTERIOR"){
+    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
     return false;
   }
 
-  if (slides === 2){
-    mobileTextExplore.html(" GADGETS");  //.addClass("animated fadeIn")
+  if (name === "FASHION"){
+    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
     return false;
   }
 
-  if (slides === 3){
-    mobileTextExplore.html(" CARS");  //.addClass("animated fadeIn")
+  if (name === "GADGETS"){
+    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
     return false;
   }
 
-  if (slides === 4){
-    mobileTextExplore.html(" KIDS");  //.addClass("animated fadeIn")
+  if (name === "CARS"){
+    mobileTextExplore.html("KIDS");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
     return false;
   }
 
-  if (slides === 5){
-    mobileTextExplore.html(" ANYTHING");  //.addClass("animated fadeIn")
+  if (name === "KIDS"){
+    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
     mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
+    return false;
+  }
+  if (name === "ANYTHING") {
+    mobileTextExplore.html("INTERIOR");
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
     return false;
   }
 }
 
+function changeNameAndImgPrev(name){
+  if (name === "INTERIOR"){
+    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
+    return false;
+  }
+  if (name === "ANYTHING") {
+    mobileTextExplore.html("KIDS");
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
+    return false;
+  }
+  if (name === "KIDS"){
+    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
+    return false;
+  }
+  if (name === "CARS"){
+    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
+    return false;
+  }
+  if (name === "GADGETS"){
+    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
+    return false;
+  }
+  if (name === "FASHION"){
+    mobileTextExplore.html("INTERIOR");  //.addClass("animated fadeIn")
+    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
+    return false;
+  }
+}
+
+function infiniteSlideLoop(){
+  setInterval(function () {
+    slider.goToNextSlide();
+    sliderNext.trigger('click');
+  },7000)
+}
 //******************************  MOBILE  ******************************//
 
 var logoToBack = $('#navLogo');
@@ -926,6 +962,7 @@ $(window).resize(function () {
 
 $(window).load(function () {
   centerImageTestimonialsTo480();
+  infiniteSlideLoop();
 });
 
 //******************************  Check window size  ******************************//
