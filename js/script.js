@@ -827,12 +827,12 @@ function filterYearOnMakeAndModel(make, model) {
 
 //******************************  BxSLIDER  ******************************//
 
-var mobileTextExplore = $(".mobileTextExplore");
-var mobileImgExplore = $(".mobileImageExplore");
+//var mobileTextExplore = $(".mobileTextExplore");
+//var mobileImgExplore = $(".mobileImageExplore");
 var slider = $('.bxslider');
-var sliderNext = $('#slider-next');
-var sliderPrevious = $('#slider-prev');
-var currentSlideText;
+//var sliderNext = $('#slider-next');
+//var sliderPrevious = $('#slider-prev');
+//var currentSlideText;
 
 slider.bxSlider({
   nextSelector: '#slider-next',
@@ -840,118 +840,122 @@ slider.bxSlider({
   nextText: '',
   prevText: '',
   pagerCustom: '#bx-pager',
-  mode: 'horizontal'
-  //auto: true,
-  //pause: 7000,
-  //speed: 500,
+  mode: 'horizontal',
+  auto: true,
+  pause: 3000,
+  speed: 500,
+  onSlideAfter: function() {
+    slider.stopAuto();
+    slider.startAuto();
+  }
 
-  //onSlideBefore: function () {
+  //onSlideAfter: function () {
   //  currentSlideText = mobileTextExplore.text();
   //  changeNameAndImgNext(currentSlideText);
   //}
 });
 
 
-sliderNext.click(function () {
-  if (sliderNext.data('stop') == 1) return;
-  sliderNext.data('stop', 1);
+//sliderNext.click(function () {
+  //if (sliderNext.data('stop') == 1) return;
+  //sliderNext.data('stop', 1);
+  //
+  //currentSlideText = mobileTextExplore.text();
+  //changeNameAndImgNext(currentSlideText);
+  //setTimeout(function () {
+  //    sliderNext.data('stop', 0);
+  //  }
+  //  , 500);
+//});
 
-  currentSlideText = mobileTextExplore.text();
-  changeNameAndImgNext(currentSlideText);
-  setTimeout(function () {
-      sliderNext.data('stop', 0);
-    }
-    , 500);
-});
+//sliderPrevious.click(function () {
+  //if (sliderPrevious.data('stop') == 1) return;
+  //sliderPrevious.data('stop', 1);
+  //
+  //currentSlideText = mobileTextExplore.text();
+  //changeNameAndImgPrev(currentSlideText);
+  //setTimeout(function () {
+  //    sliderPrevious.data('stop', 0);
+  //  }
+  //  , 500);
+//});
 
-sliderPrevious.click(function () {
-  if (sliderPrevious.data('stop') == 1) return;
-  sliderPrevious.data('stop', 1);
+//function changeNameAndImgNext(name) {
+//  if (name === "INTERIOR") {
+//    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
+//    return false;
+//  }
+//
+//  if (name === "FASHION") {
+//    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
+//    return false;
+//  }
+//
+//  if (name === "GADGETS") {
+//    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
+//    return false;
+//  }
+//
+//  if (name === "CARS") {
+//    mobileTextExplore.html("KIDS");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
+//    return false;
+//  }
+//
+//  if (name === "KIDS") {
+//    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
+//    return false;
+//  }
+//  if (name === "ANYTHING") {
+//    mobileTextExplore.html("INTERIOR");
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
+//    return false;
+//  }
+//}
+//
+//function changeNameAndImgPrev(name) {
+//  if (name === "INTERIOR") {
+//    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
+//    return false;
+//  }
+//  if (name === "ANYTHING") {
+//    mobileTextExplore.html("KIDS");
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
+//    return false;
+//  }
+//  if (name === "KIDS") {
+//    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
+//    return false;
+//  }
+//  if (name === "CARS") {
+//    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
+//    return false;
+//  }
+//  if (name === "GADGETS") {
+//    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
+//    return false;
+//  }
+//  if (name === "FASHION") {
+//    mobileTextExplore.html("INTERIOR");  //.addClass("animated fadeIn")
+//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
+//    return false;
+//  }
+//}
 
-  currentSlideText = mobileTextExplore.text();
-  changeNameAndImgPrev(currentSlideText);
-  setTimeout(function () {
-      sliderPrevious.data('stop', 0);
-    }
-    , 500);
-});
-
-function changeNameAndImgNext(name) {
-  if (name === "INTERIOR") {
-    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
-    return false;
-  }
-
-  if (name === "FASHION") {
-    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
-    return false;
-  }
-
-  if (name === "GADGETS") {
-    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
-    return false;
-  }
-
-  if (name === "CARS") {
-    mobileTextExplore.html("KIDS");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
-    return false;
-  }
-
-  if (name === "KIDS") {
-    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
-    return false;
-  }
-  if (name === "ANYTHING") {
-    mobileTextExplore.html("INTERIOR");
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
-    return false;
-  }
-}
-
-function changeNameAndImgPrev(name) {
-  if (name === "INTERIOR") {
-    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
-    return false;
-  }
-  if (name === "ANYTHING") {
-    mobileTextExplore.html("KIDS");
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
-    return false;
-  }
-  if (name === "KIDS") {
-    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
-    return false;
-  }
-  if (name === "CARS") {
-    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
-    return false;
-  }
-  if (name === "GADGETS") {
-    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
-    return false;
-  }
-  if (name === "FASHION") {
-    mobileTextExplore.html("INTERIOR");  //.addClass("animated fadeIn")
-    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
-    return false;
-  }
-}
-
-function infiniteSlideLoop() {
-  setInterval(function () {
-    slider.goToNextSlide();
-    sliderNext.trigger('click');
-  }, 7000)
-}
+//function infiniteSlideLoop() {
+//  setInterval(function () {
+//    slider.goToNextSlide();
+//    sliderNext.trigger('click');
+//  }, 7000)
+//}
 //******************************  MOBILE  ******************************//
 
 var logoToBack = $('#navLogo');
@@ -964,7 +968,7 @@ $(window).resize(function () {
 
 $(window).load(function () {
   centerImageTestimonialsTo480();
-  infiniteSlideLoop();
+  //infiniteSlideLoop();
 });
 
 //******************************  Check window size  ******************************//
@@ -997,6 +1001,9 @@ function centerImageTestimonialsTo480() {
     thirdImgContainer.css('left', centerImages);
     fourthImgContainer.css('left', centerImages);
     fifthImgContainer.css('left', centerImages);
+
+    //var centerInput = windowWidth - 20 + 'px';
+    //inputQuestion.css('width', centerInput);
   }
   else
   {

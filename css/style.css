@@ -1015,6 +1015,7 @@ select {
   .explore {
     background: white;
     text-align: center;
+    position: relative;
   }
 
   .explore h1 {
@@ -1056,7 +1057,7 @@ select {
   }
 
   .explore .exploreMobileBtns ul li a {
-    padding: 0 30px 0 30px;
+    padding: 0 70px 0 70px;
     opacity: 0.7;
     font-family: GothamPro-Bold;
     font-size: 14px;
@@ -1064,14 +1065,14 @@ select {
     text-decoration: none;
   }
 
-  .explore .exploreMobileBtns ul li a img{
+  .explore .exploreDesktop ul li a img{
     max-height:22px;
   }
 
-  .exploreDesktop {
-    visibility: hidden;
-    display:none;
-  }
+  /*.exploreDesktop {*/
+    /*visibility: hidden;*/
+    /*display:none;*/
+  /*}*/
 
   .exploreMobileBtns {
     visibility: visible;
@@ -1083,7 +1084,45 @@ select {
     /*text-decoration: none;*/
   }
 
-  .exploreMobileBtns .exploreBackBtn img{
+  /*.exploreMobileBtns .exploreBackBtn img{*/
+  /*}*/
+
+  /*.explore .exploreDesktop ul {*/
+    /*list-style: none;*/
+  /*}*/
+
+  /*.explore .exploreDesktop ul > li {*/
+    /*display: inline-block;*/
+    /*padding-bottom: 20px;*/
+  /*}*/
+
+  .explore .exploreDesktop ul li {
+    position: absolute;
+    display: inline-block;
+    visibility: hidden;
+    padding-bottom: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .explore .exploreDesktop ul > li .active {
+    visibility: visible;
+  }
+
+  .explore .exploreDesktop ul li a {
+    opacity: 0.2;
+    font-family: GothamPro-Bold;
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding:0;
+  }
+
+  .explore .exploreDesktop ul li a:hover, .explore .exploreDesktop ul > li .active {
+    opacity: 0.8;
   }
 
   /*a .bx-prev {*/
@@ -1121,6 +1160,7 @@ select {
   .exploreMobileBtns{
     visibility: visible;
   }
+
 
   /*TESTIMONIALS*/
   .testimonials {
