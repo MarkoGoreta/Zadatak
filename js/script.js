@@ -106,12 +106,16 @@ function check(increment) {
 
 var wantWhen = $('#wantWhen');
 function resetForm() {
+  if ($(window).width() <= 480) {
+    logoToBack.css('visibility', 'visible');
+  }
   $('.msform')[0].reset();
   increment = 0;
   selectBox.selectpicker('refresh');
   wantWhen.selectpicker('refresh');
   tooltip2Visible = false;
   carsDrop.css('visibility', 'hidden').removeClass('animated fadeInDown');
+
   setTimeout(function () {
     tooltip1.tooltip('enable').tooltip('show');
     tooltip2.tooltip('disable');
@@ -250,7 +254,6 @@ function removeUsernameError() {
   });
   username.css('border', '');
   userError.removeClass('animated fadeInUp');
-
 }
 
 function removeEmailError() {
@@ -738,7 +741,7 @@ slider.bxSlider({
   pagerCustom: '#bx-pager',
   mode: 'horizontal',
   auto: true,
-  pause: 3000,
+  pause: 7000,
   speed: 500,
   onSlideAfter: function() {
     slider.stopAuto();
