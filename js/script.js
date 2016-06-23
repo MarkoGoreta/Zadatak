@@ -158,7 +158,6 @@ $('.formValidation').on('click', function () {
   }
 
   if (username.val().length === 0 && email.val().length === 0) {
-    removeInvalidEmailErrorWithEmpty();
     var name = checkUsername();
     var mail = checkEmail();
     return name && mail;
@@ -169,7 +168,6 @@ $('.formValidation').on('click', function () {
   }
 
   if (email.val().length === 0) {
-    removeInvalidEmailErrorWithEmpty();
     return checkEmail();
   }
 
@@ -229,21 +227,18 @@ function checkEmail() {
 }
 
 function showUsernameError() {
-  //$("<br id='breakUsername'><p class='errorMessage' id='usernameError'>Username is required.</p>").insertAfter("#username");
   username.css('border', '2px solid red');
   userError.text('This field is required.');
   userError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
 }
 
 function showEmailError() {
-  //$("<br id='breakEmail'><p class='errorMessage' id='emailError' >Email is required.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
   emailError.text('Email is required.');
   emailError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
 }
 
 function showEmailNotValid() {
-  //$("<br id='breakInvalidEmail'><p class='errorMessage' id='emailInvalidError' >Enter valid email.</p>").insertAfter("#email");
   email.css('border', '2px solid red');
   emailError.text('Enter valid email address.');
   emailError.css('visibility', 'visible').css('display', 'inherit').addClass('animated fadeInUp');
@@ -253,9 +248,6 @@ function removeUsernameError() {
   userError.fadeOut(700, function () {
     userError.css('visibility', 'hidden');
   });
-  //$('#breakUsername').fadeOut(700, function () {
-  //  $(this).remove();
-  //});
   username.css('border', '');
   userError.removeClass('animated fadeInUp');
 
@@ -265,9 +257,6 @@ function removeEmailError() {
   emailError.fadeOut(700, function () {
     emailError.css('visibility', 'hidden');
   });
-  //$('#breakEmail').fadeOut(700, function () {
-  //  $(this).remove();
-  //});
   email.css('border', '');
   emailError.removeClass('animated fadeInUp');
 }
@@ -276,16 +265,8 @@ function removeInvalidEmailError() {
   emailError.fadeOut(700, function () {
     emailError.css('visibility', 'hidden');
   });
-  //$('#breakInvalidEmail').fadeOut(700, function () {
-  //  $(this).remove();
-  //});
   email.css('border', '');
   emailError.removeClass('animated fadeInUp');
-}
-
-function removeInvalidEmailErrorWithEmpty() {
-  //userError.css('visibility','hidden')
-  //emailError.css('visibility','hidden')
 }
 
 //******************************  FORM BULLET SCROLL  ******************************//
@@ -612,6 +593,7 @@ selectBox.on('change', function () {
 
   if ($('option[value="Cars"]').is(':selected')) {
 
+    carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
     //spinner.css('visibility', 'visible');
     $.getJSON("cars.json", function (data) {
       cars = data;
@@ -620,29 +602,13 @@ selectBox.on('change', function () {
       var model = arrayOfModel(cars);
       var make = arrayOfMake(cars);
 
-      //yearVar = keys[0];
-      //makeVar = keys[1];
-      //modelVar = keys[2];
-
-      //capitalizeAndFillYear(yearVar);
-      //capitalizeAndFillMake(makeVar);
-      //capitalizeAndFillModel(modelVar);
-
-      //showYears(years);
       showMakes(make);
-      //showModels(model);
       removeDuplicateMakes();
 
-      //yearRef.addClass('selectpicker');
-      //makeRef.addClass('selectpicker');
-      //modelRef.addClass('selectpicker');
       $('.selectpicker').selectpicker({
         size: 11
       }).selectpicker('refresh');
 
-      //spinner.css('visibility', 'hidden');
-
-      carsDrop.css('visibility', 'visible').addClass('animated fadeInDown');
       buttonCat.addClass('buttonAnimDown');
 
       setTimeout(function () {
@@ -676,11 +642,6 @@ function capitalizeAndFillYear(yearVar) {
   yearRef
     .append()
     .attr("title", year);
-  //.append($("<option selected disabled>")
-  //  .attr("value", year)
-  //  .text(year))
-  //.append(year)
-  //.append("</option>");
 }
 
 function capitalizeAndFillMake(makeVar) {
@@ -699,46 +660,11 @@ function capitalizeAndFillModel(modelVar) {
     .attr("title", model);
 }
 
-//yearRef.change(function () {
-//
-//  var currentYear = $('#yearRef option:selected').text();
-//  var models = filterModelsOnYear(currentYear);
-//  var makes = filterMakesOnYear(currentYear);
-//
-//  yearRef.removeClass('selectpicker');
-//  makeRef.removeClass('selectpicker');
-//  modelRef.removeClass('selectpicker');
-//
-//  makeRef.find('option')
-//    .remove();
-//
-//  modelRef.find('option')
-//    .remove();
-//
-//
-//  capitalizeAndFillMake(makeVar);
-//  capitalizeAndFillModel(modelVar);
-//
-//  showMakes(makes);
-//  removeDuplicateMakes();
-//  showModels(models);
-//
-//  yearRef.addClass('selectpicker');
-//  makeRef.addClass('selectpicker');
-//  modelRef.addClass('selectpicker');
-//
-//  $('.selectpicker').selectpicker('refresh');
-//});
-
 makeRef.change(function () {
 
-  //var currentYear = $('#yearRef option:selected').text();
   var currentMake = $('#makeRef option:selected').text();
   var models = filterModelOnMakes(currentMake);
   var years = filterModelOnYears(currentMake);
-  //yearRef.removeClass('selectpicker');
-  //makeRef.removeClass('selectpicker');
-  //modelRef.removeClass('selectpicker');
 
   modelRef.find('option')
     .remove();
@@ -746,15 +672,10 @@ makeRef.change(function () {
   yearRef.find('option')
     .remove();
 
-  //capitalizeAndFillModel(modelVar);
   showModels(models);
   showYears(years);
   removeDuplicateModel();
   removeDuplicateYears();
-
-  //yearRef.addClass('selectpicker');
-  //makeRef.addClass('selectpicker');
-  //modelRef.addClass('selectpicker');
 
   $('.selectpicker').selectpicker('refresh');
 });
@@ -774,26 +695,6 @@ modelRef.change(function () {
 
   $('.selectpicker').selectpicker('refresh');
 });
-
-//function filterModelsOnYear(year) {
-//  var filteredModels = [];
-//  cars.forEach(function (car) {
-//    if (car.year === year) {
-//      filteredModels.push(car.model);
-//    }
-//  });
-//  return filteredModels;
-//}
-
-//function filterMakesOnYear(year) {
-//  var filteredMakes = [];
-//  cars.forEach(function (car) {
-//    if (car.year === year) {
-//      filteredMakes.push(car.make);
-//    }
-//  });
-//  return filteredMakes;
-//}
 
 function filterModelOnMakes(make) {
   var filteredModels = [];
@@ -827,12 +728,7 @@ function filterYearOnMakeAndModel(make, model) {
 
 //******************************  BxSLIDER  ******************************//
 
-//var mobileTextExplore = $(".mobileTextExplore");
-//var mobileImgExplore = $(".mobileImageExplore");
 var slider = $('.bxslider');
-//var sliderNext = $('#slider-next');
-//var sliderPrevious = $('#slider-prev');
-//var currentSlideText;
 
 slider.bxSlider({
   nextSelector: '#slider-next',
@@ -848,114 +744,8 @@ slider.bxSlider({
     slider.stopAuto();
     slider.startAuto();
   }
-
-  //onSlideAfter: function () {
-  //  currentSlideText = mobileTextExplore.text();
-  //  changeNameAndImgNext(currentSlideText);
-  //}
 });
 
-
-//sliderNext.click(function () {
-  //if (sliderNext.data('stop') == 1) return;
-  //sliderNext.data('stop', 1);
-  //
-  //currentSlideText = mobileTextExplore.text();
-  //changeNameAndImgNext(currentSlideText);
-  //setTimeout(function () {
-  //    sliderNext.data('stop', 0);
-  //  }
-  //  , 500);
-//});
-
-//sliderPrevious.click(function () {
-  //if (sliderPrevious.data('stop') == 1) return;
-  //sliderPrevious.data('stop', 1);
-  //
-  //currentSlideText = mobileTextExplore.text();
-  //changeNameAndImgPrev(currentSlideText);
-  //setTimeout(function () {
-  //    sliderPrevious.data('stop', 0);
-  //  }
-  //  , 500);
-//});
-
-//function changeNameAndImgNext(name) {
-//  if (name === "INTERIOR") {
-//    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
-//    return false;
-//  }
-//
-//  if (name === "FASHION") {
-//    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
-//    return false;
-//  }
-//
-//  if (name === "GADGETS") {
-//    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
-//    return false;
-//  }
-//
-//  if (name === "CARS") {
-//    mobileTextExplore.html("KIDS");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
-//    return false;
-//  }
-//
-//  if (name === "KIDS") {
-//    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
-//    return false;
-//  }
-//  if (name === "ANYTHING") {
-//    mobileTextExplore.html("INTERIOR");
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
-//    return false;
-//  }
-//}
-//
-//function changeNameAndImgPrev(name) {
-//  if (name === "INTERIOR") {
-//    mobileTextExplore.html("ANYTHING");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/anything-icon.png");
-//    return false;
-//  }
-//  if (name === "ANYTHING") {
-//    mobileTextExplore.html("KIDS");
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/interior-icon.png");
-//    return false;
-//  }
-//  if (name === "KIDS") {
-//    mobileTextExplore.html("CARS");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/cars-icon.png");
-//    return false;
-//  }
-//  if (name === "CARS") {
-//    mobileTextExplore.html("GADGETS");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/gadgets-icon.png");
-//    return false;
-//  }
-//  if (name === "GADGETS") {
-//    mobileTextExplore.html("FASHION");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/fashion-icon.png");
-//    return false;
-//  }
-//  if (name === "FASHION") {
-//    mobileTextExplore.html("INTERIOR");  //.addClass("animated fadeIn")
-//    mobileImgExplore.attr('src', "http://localhost:63342/zadatak/images/kids-icon.png");
-//    return false;
-//  }
-//}
-
-//function infiniteSlideLoop() {
-//  setInterval(function () {
-//    slider.goToNextSlide();
-//    sliderNext.trigger('click');
-//  }, 7000)
-//}
 //******************************  MOBILE  ******************************//
 
 var logoToBack = $('#navLogo');
@@ -968,7 +758,6 @@ $(window).resize(function () {
 
 $(window).load(function () {
   centerImageTestimonialsTo480();
-  //infiniteSlideLoop();
 });
 
 //******************************  Check window size  ******************************//
@@ -1001,9 +790,6 @@ function centerImageTestimonialsTo480() {
     thirdImgContainer.css('left', centerImages);
     fourthImgContainer.css('left', centerImages);
     fifthImgContainer.css('left', centerImages);
-
-    //var centerInput = windowWidth - 20 + 'px';
-    //inputQuestion.css('width', centerInput);
   }
   else
   {

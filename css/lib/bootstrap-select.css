@@ -7,7 +7,6 @@
 
 select.bs-select-hidden,
 select.selectpicker {
-  /*display: none !important;*/
 }
 .bootstrap-select {
   width: 125px \0;
@@ -78,10 +77,8 @@ select.selectpicker {
   margin-left: 7px;
 }
 .bootstrap-select .dropdown-toggle:focus {
-  /*outline: thin dotted #333333 !important;*/
-  /*outline: 5px auto -webkit-focus-ring-color !important;*/
-  /*outline-offset: -2px;*/
 }
+
 .bootstrap-select.form-control {
   margin-bottom: 0;
   padding: 0;
